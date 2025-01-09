@@ -10,10 +10,9 @@ const IntroCard = () => {
           ENGINEER
         </span>
       </h1>
-      <p className="text-gray">
-        Passionate about creating intuitive and engaging user <br />
-        experiences. Specialize in transforming ideas into <br /> beautifully
-        crafted products.
+      <p className="text-gray px-2 text-center">
+        Passionate Full STack Developer specialized in creating intuitive and
+        engaging user Experience.
       </p>
     </div>
   );

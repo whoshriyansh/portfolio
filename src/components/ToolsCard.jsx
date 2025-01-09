@@ -85,7 +85,7 @@ const ToolsCard = () => {
         <br />
         <span className="text-soft_gray/20">TOOLS</span>
       </h1>
-      <div className="grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10">
+      <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10 px-4">
         {tools.map((tool, index) => (
           <SingleToolCard
             key={index}

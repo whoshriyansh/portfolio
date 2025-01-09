@@ -28,6 +28,11 @@ const SkillsCard = () => {
       Icon: <Icon icon="logos:python" width={40} height={40} />,
     },
     {
+      name: "Wix",
+      usage: "Website Maker",
+      Icon: <Icon icon="logos:wix" width={40} height={40} />,
+    },
+    {
       name: "React",
       usage: "JavaScript Library",
       Icon: <Icon icon="logos:react" width={40} height={40} />,
@@ -86,7 +91,7 @@ const SkillsCard = () => {
         <br />
         <span className="text-soft_gray/20">SKILLS</span>
       </h1>
-      <div className="grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10">
+      <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10 px-4">
         {skills.map((skill, index) => (
           <SingleSkillCard
             key={index}

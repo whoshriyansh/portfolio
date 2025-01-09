@@ -30,7 +30,7 @@ const Homepage = () => {
           <SkillsCard />
           <ToolsCard />
           <ThoughtCard />
-          <ContactForm />
+          {/* <ContactForm /> */}
         </div>
       </div>
     </div>
