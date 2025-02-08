@@ -5,9 +5,9 @@ const ProfileImg = () => {
   return (
     <div className="w-full h-[344px] md:h-[540px] lg:h-[640px]">
       <div className="bg-white rounded-lg flex flex-col gap-5 items-center justify-center py-10">
-        <div className="rounded-2xl">
+        <div className="rounded-2xl w-64">
           <img
-            src="https://media.licdn.com/dms/image/v2/D5603AQHxi4vksK4I6A/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1727051863589?e=1741824000&v=beta&t=-Ththa4I9B7l3pHkp9VaMx2eRhbSllbnnouBDlvcPpU"
+            src="/assets/profile.jpg"
             alt="Profile Photos"
             className="rounded-2xl"
           />

@@ -7,15 +7,20 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postbuild": "react-snap"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^10.2.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-feather": "^2.0.10",
+    "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.1.1",
-    "react-toastify": "^11.0.2"
+    "react-toastify": "^11.0.2",
+    "sitemap": "^8.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
