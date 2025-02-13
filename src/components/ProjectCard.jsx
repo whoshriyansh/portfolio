@@ -58,6 +58,15 @@ const ProjectCard = () => {
   const projects = [
     {
       id: 1,
+      name: "Stockin",
+      description:
+        "A Dashboard which shows pure UI skills as well as it works with different API from different disributors for Stock Data. It contains some UI components to showcase my skillset.",
+      imageUrl: "/assets/stockin.png",
+      githubUrl: "https://github.com/whoshriyansh/stock_dashboard",
+      liveUrl: "https://stockin-dashboard.netlify.app/",
+    },
+    {
+      id: 2,
       name: "Selz Frontend",
       description:
         "Frontend for a complete e-commerce platform with React.js, featuring responsive design, product listings, and an admin dashboard.",
@@ -65,7 +74,7 @@ const ProjectCard = () => {
       githubUrl: "https://github.com/whoshriyansh/e-commerce-client",
     },
     {
-      id: 2,
+      id: 3,
       name: "Selz Backend",
       description:
         "Backend for the e-commerce platform with Node.js/Express and MongoDB. Includes user authentication, order management, and admin controls.",
@@ -73,7 +82,7 @@ const ProjectCard = () => {
       githubUrl: "https://github.com/whoshriyansh/e-commerce-server",
     },
     {
-      id: 3,
+      id: 4,
       name: "Cloud Ingenious",
       description:
         "Transformed a Wix template into a fully responsive site, improving traffic by 30% and accessibility by 60%.",
@@ -82,7 +91,7 @@ const ProjectCard = () => {
       liveUrl: "https://www.cloudingenious.com/",
     },
     {
-      id: 4,
+      id: 5,
       name: "Udhari Bazaar",
       description:
         "Built an Admin Dashboard for a ₹50 lakh/month business, optimizing client onboarding and business efficiency.",
@@ -91,7 +100,7 @@ const ProjectCard = () => {
       liveUrl: "https://udharibazaar.com/",
     },
     {
-      id: 5,
+      id: 6,
       name: "StarOps Technologies",
       description:
         "Led the design & development of the StarOps website, ensuring pixel-perfect, responsive design and smooth user experience.",
