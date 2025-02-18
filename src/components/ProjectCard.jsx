@@ -67,22 +67,6 @@ const ProjectCard = () => {
     },
     {
       id: 2,
-      name: "Selz Frontend",
-      description:
-        "Frontend for a complete e-commerce platform with React.js, featuring responsive design, product listings, and an admin dashboard.",
-      imageUrl: "/assets/selz.png",
-      githubUrl: "https://github.com/whoshriyansh/e-commerce-client",
-    },
-    {
-      id: 3,
-      name: "Selz Backend",
-      description:
-        "Backend for the e-commerce platform with Node.js/Express and MongoDB. Includes user authentication, order management, and admin controls.",
-      imageUrl: "/assets/selz.png",
-      githubUrl: "https://github.com/whoshriyansh/e-commerce-server",
-    },
-    {
-      id: 4,
       name: "Cloud Ingenious",
       description:
         "Transformed a Wix template into a fully responsive site, improving traffic by 30% and accessibility by 60%.",
@@ -91,7 +75,7 @@ const ProjectCard = () => {
       liveUrl: "https://www.cloudingenious.com/",
     },
     {
-      id: 5,
+      id: 3,
       name: "Udhari Bazaar",
       description:
         "Built an Admin Dashboard for a ₹50 lakh/month business, optimizing client onboarding and business efficiency.",
@@ -100,7 +84,7 @@ const ProjectCard = () => {
       liveUrl: "https://udharibazaar.com/",
     },
     {
-      id: 6,
+      id: 4,
       name: "StarOps Technologies",
       description:
         "Led the design & development of the StarOps website, ensuring pixel-perfect, responsive design and smooth user experience.",
