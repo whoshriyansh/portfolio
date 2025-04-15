@@ -23,19 +23,14 @@ const SkillsCard = () => {
       Icon: <Icon icon="logos:javascript" width={40} height={40} />,
     },
     {
-      name: "Python",
-      usage: "Programming Language",
-      Icon: <Icon icon="logos:python" width={40} height={40} />,
-    },
-    {
-      name: "Wix",
-      usage: "Website Maker",
-      Icon: <Icon icon="logos:wix" width={40} height={40} />,
-    },
-    {
       name: "React",
       usage: "JavaScript Library",
       Icon: <Icon icon="logos:react" width={40} height={40} />,
+    },
+    {
+      name: "NextJS",
+      usage: "JavaScript Library",
+      Icon: <Icon icon="logos:nextjs-icon" width={40} height={40} />,
     },
     {
       name: "Node.js",
@@ -51,6 +46,21 @@ const SkillsCard = () => {
       name: "React Native",
       usage: "JavaScript Framework",
       Icon: <Icon icon="devicon:reactnative" width={40} height={40} />,
+    },
+    {
+      name: "Wix",
+      usage: "Website Maker",
+      Icon: <Icon icon="skill-icons:wordpress" width={40} height={40} />,
+    },
+    {
+      name: "Wix",
+      usage: "Website Maker",
+      Icon: <Icon icon="logos:shopify" width={40} height={40} />,
+    },
+    {
+      name: "Wix",
+      usage: "Website Maker",
+      Icon: <Icon icon="logos:wix" width={40} height={40} />,
     },
     {
       name: "Tailwind CSS",

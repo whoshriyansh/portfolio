@@ -57,6 +57,15 @@ const SingleProjectCard = ({ project }) => {
 const ProjectCard = () => {
   const projects = [
     {
+      id: 5,
+      name: "Garg N Garg's Associates",
+      description:
+        "Made the full wesbite using most popular wesbite creation tool wordpress and with custom design made from figma by me. Added google analytics and SEO fro better performance and ranking.",
+      imageUrl:
+        "https://gargngargsassociates.com/wp-content/uploads/2025/04/Frame-33.png",
+      liveUrl: "https://gargngargsassociates.com/",
+    },
+    {
       id: 1,
       name: "Stockin",
       description:

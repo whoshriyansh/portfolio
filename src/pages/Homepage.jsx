@@ -9,6 +9,7 @@ import ToolsCard from "../components/ToolsCard";
 import ThoughtCard from "../components/ThoughtCard";
 import SkillsCard from "../components/SkillsCard";
 import { Helmet } from "react-helmet-async";
+import ReviewCard from "../components/ReviewCard";
 
 const Homepage = () => {
   return (
@@ -69,6 +70,7 @@ const Homepage = () => {
             <IntroCard />
             <CountCard />
             <HighlightCard />
+            <ReviewCard />
             <ProjectCard />
             <ExperienceCard />
             <SkillsCard />

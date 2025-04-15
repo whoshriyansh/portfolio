@@ -17,6 +17,7 @@
     "react-dom": "^18.3.1",
     "react-feather": "^2.0.10",
     "react-helmet-async": "^2.0.5",
+    "react-multi-carousel": "^2.8.6",
     "react-router": "^7.1.5",
     "react-router-dom": "^7.1.5",
     "react-toastify": "^11.0.2",

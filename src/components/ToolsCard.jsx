@@ -27,11 +27,6 @@ const ToolsCard = () => {
       Icon: <Icon icon="flat-color-icons:linux" width={40} height={40} />,
     },
     {
-      name: "Windows",
-      usage: "Operating System",
-      Icon: <Icon icon="devicon:windows11" width={40} height={40} />,
-    },
-    {
       name: "Github",
       usage: "Git Repository Management ",
       Icon: <Icon icon="icon-park:github" width={40} height={40} />,
@@ -52,6 +47,11 @@ const ToolsCard = () => {
       Icon: <Icon icon="devicon:postman" width={40} height={40} />,
     },
     {
+      name: "Insomnia",
+      usage: "API Testing Tool",
+      Icon: <Icon icon="devicon:insomnia" width={40} height={40} />,
+    },
+    {
       name: "Figma",
       usage: "Design Tool",
       Icon: <Icon icon="devicon:figma" width={40} height={40} />,
@@ -65,16 +65,6 @@ const ToolsCard = () => {
       name: "Jira",
       usage: "Project Management Tool",
       Icon: <Icon icon="devicon:jira" width={40} height={40} />,
-    },
-    {
-      name: "Material UI",
-      usage: "UI Component Library",
-      Icon: <Icon icon="devicon:materialui" width={40} height={40} />,
-    },
-    {
-      name: "ViteJS",
-      usage: "Build Tool",
-      Icon: <Icon icon="devicon:vitejs" width={40} height={40} />,
     },
   ];
 

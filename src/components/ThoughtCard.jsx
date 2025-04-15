@@ -44,6 +44,22 @@ const ThoughtCard = () => {
       liveUrl:
         "https://medium.com/@whoshriyansh/how-to-create-a-centralized-api-service-in-react-with-axios-96f80fde0436",
     },
+    {
+      name: "7 Website Mistakes That Kill Your Sales",
+      description:
+        "Your website is more than just a digital storefront; it's a critical component of your business's success. However, certain common mistakes can significantly hinder your sales performance. Let's explore these pitfalls and how to avoid them",
+      readTime: "2 min",
+      liveUrl:
+        "https://www.linkedin.com/pulse/7-website-mistakes-kill-your-sales-shriyansh-lohia-kfakc/?trackingId=iw%2BU4Zh%2FQI2h%2BgttPhTLXA%3D%3D",
+    },
+    {
+      name: "Why Every Local Business Needs a Website",
+      description:
+        "Maybe you were looking for a nearby bakery, a reliable plumber, a new gym, or even a salon. And what did you do? You pulled out your phone, typed a few words into Google, and clicked on one of the first results that looked trustworthy.",
+      readTime: "3 min",
+      liveUrl:
+        "https://www.linkedin.com/pulse/why-every-local-business-needs-website-social-media-isnt-lohia-9fmac/?trackingId=5Cu%2FYs6MRHKBhImQThnT4A%3D%3D",
+    },
   ];
 
   return (

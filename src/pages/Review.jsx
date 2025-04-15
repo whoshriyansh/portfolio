@@ -1,13 +1,14 @@
 import React from "react";
 import ProfileImg from "../components/ProfileImg";
-import ToolsCard from "../components/ToolsCard";
+import ContactForm from "../components/ContactForm";
+import ReviewCard from "../components/ReviewCard";
 
-const Tools = () => {
+const Review = () => {
   return (
     <div className="container mx-auto flex flex-col lg:flex-row">
       <div className="w-full lg:w-7/12 overflow-y-auto scrollbar-hidden mt-40 md:mt-10 lg:mt-28">
         <div className="space-y-20 flex flex-col justify-center items-center lg:items-start">
-          <ToolsCard />
+          <ReviewCard />
           {/* <ContactForm /> */}
         </div>
       </div>
@@ -18,4 +19,4 @@ const Tools = () => {
   );
 };
 
-export default Tools;
+export default Review;
