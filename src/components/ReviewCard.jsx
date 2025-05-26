@@ -87,23 +87,24 @@ const ReviewCard = () => {
       id: 1,
       clientName: "Himanshu Arya",
       clientReview:
-        "The best things about shriyansh is he gave me custom design not a normal template design with that he delivers website with optimized SEO and Google Analytics setup",
+        "The best part about working with Shriyansh was that he didn’t just use a standard template, he delivered a fully custom-designed website tailored to our brand. On top of that, the site was SEO-optimized from the start, and he even set up Google Analytics so we could track performance from day one. Great experience overall.",
       starsGiven: 5,
       companyName: "Garg N Garg's Associates",
       clientImg:
         "https://media.licdn.com/dms/image/v2/D5603AQEVf_9ZU_QZ2g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1709802048136?e=1750291200&v=beta&t=pngD9iNJ7drkzemdq1kQMrFkdJgC7s9X7X_LjoTsDOA",
       linkedinLink: "https://www.linkedin.com/in/himanshu-arya-/",
     },
-    // {
-    //   id: 2,
-    //   clientName: "Anjali Mehta",
-    //   clientReview:
-    //     "Absolutely stunning work. Shriyansh was patient with all the iterations and delivered exactly what I imagined.",
-    //   starsGiven: 4,
-    //   companyName: "Mehta Creations",
-    //   clientImg: "https://randomuser.me/api/portraits/women/44.jpg",
-    //   linkedinLink: "https://www.linkedin.com/in/anjali-mehta",
-    // },
+    {
+      id: 2,
+      clientName: "Mayell Real Estate",
+      clientReview:
+        "We hired Shriyansh to improve our Google search presence for our company, and within 2 months, we noticed a 60% increase in local inquiries. He's fast, responsive, and knows his stuff. We’re continuing with him for SEO and site maintenance. Highly recommended.",
+      starsGiven: 5,
+      companyName: "Mayell Real Estate",
+      clientImg:
+        "https://media.licdn.com/dms/image/v2/C560BAQGJ1Jht2nHBDg/company-logo_200_200/company-logo_200_200/0/1630656751313?e=1753920000&v=beta&t=ARD6JsqQDodJiq9jURKuhQc-rTS40yO5hCrTyWZAaQM",
+      linkedinLink: "https://www.linkedin.com/company/mayellrealestate/",
+    },
     // {
     //   id: 3,
     //   clientName: "Rajeev Bansal",
