@@ -62,12 +62,7 @@ const Projects = () => {
       <div className="container mx-auto flex flex-col lg:flex-row">
         {/* ✅ Projects Section */}
         <div className="w-full lg:w-7/12 overflow-y-auto scrollbar-hidden mt-40 md:mt-10 lg:mt-28">
-          <div className="space-y-20 flex flex-col justify-center items-center lg:items-start">
-            <h1 className="text-3xl font-bold text-gray-900">
-              My React Projects
-            </h1>
-            <ProjectCard />
-          </div>
+          <ProjectCard />
         </div>
 
         {/* ✅ Profile Section */}

@@ -16,7 +16,7 @@ const ProfileImg = () => {
         <div className="text-center flex flex-col gap-3">
           <h1 className="font-bold text-black text-4xl">Shriyansh Kr. Lohia</h1>
           <p className="font-medium  text-base text-dark_gray">
-            A Software Engineer | Part Time Comic
+            Full-Stack Developer | MERN + Next.js 15 | CI/CD & DevOps Ready
           </p>
         </div>
 

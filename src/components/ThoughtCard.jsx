@@ -69,6 +69,11 @@ const ThoughtCard = () => {
         <br />
         <span className="text-soft_gray/20">THOUGHTS</span>
       </h1>
+      <p className="text-gray px-2 text-center  lg:text-left">
+        These articles reflect my journey, what I’ve learned, where I got stuck,
+        and how I solved real problems. I write them to help developers who
+        might be facing the same challenges I did.
+      </p>
       <div className="flex flex-col mt-10">
         {articles.map((article, index) => (
           <SingleThoughtCard key={index} article={article} />

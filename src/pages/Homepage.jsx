@@ -68,13 +68,13 @@ const Homepage = () => {
         <div className="w-full lg:w-7/12 overflow-y-auto scrollbar-hidden mt-40 md:mt-10 lg:mt-28">
           <div className="space-y-20 flex flex-col justify-center items-center lg:items-start">
             <IntroCard />
-            <CountCard />
+            {/* <CountCard /> */}
             <HighlightCard />
-            <ReviewCard />
             <ProjectCard />
             <ExperienceCard />
             <SkillsCard />
             <ToolsCard />
+            <ReviewCard />
             <ThoughtCard />
             {/* <ContactForm /> */}
           </div>

@@ -17,74 +17,95 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `p-2 rounded-md flex items-center justify-center ${
+            `group relative p-2 rounded-md flex items-center justify-center ${
               isActive ? "text-orange" : "text-white"
             }`
           }
         >
           <Home width={20} height={20} />
-        </NavLink>
-
-        <NavLink
-          to="/reviews"
-          className={({ isActive }) =>
-            `p-2 rounded-md flex items-center justify-center ${
-              isActive ? "text-orange" : "text-white"
-            }`
-          }
-        >
-          <MessageSquare width={20} height={20} />
+          <span className="absolute bottom-[-30px] text-xs bg-dark_gray/10 text-white px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-95 group-hover:scale-100 z-10">
+            Home
+          </span>
         </NavLink>
 
         <NavLink
           to="/projects"
           className={({ isActive }) =>
-            `p-2 rounded-md flex items-center justify-center ${
+            `group relative p-2 rounded-md flex items-center justify-center ${
               isActive ? "text-orange" : "text-white"
             }`
           }
         >
           <Folder width={20} height={20} />
+          <span className="absolute bottom-[-30px] text-xs bg-dark_gray/10 text-white px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-95 group-hover:scale-100 z-10">
+            Projects
+          </span>
         </NavLink>
         <NavLink
           to="/experience"
           className={({ isActive }) =>
-            `p-2 rounded-md flex items-center justify-center ${
+            `group relative p-2 rounded-md flex items-center justify-center ${
               isActive ? "text-orange" : "text-white"
             }`
           }
         >
           <Briefcase width={20} height={20} />
+          <span className="absolute bottom-[-30px] text-xs bg-dark_gray/10 text-white px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-95 group-hover:scale-100 z-10">
+            Experience
+          </span>
         </NavLink>
         <NavLink
           to="/skills"
           className={({ isActive }) =>
-            `p-2 rounded-md flex items-center justify-center ${
+            `group relative p-2 rounded-md flex items-center justify-center ${
               isActive ? "text-orange" : "text-white"
             }`
           }
         >
           <Command width={20} height={20} />
+          <span className="absolute bottom-[-30px] text-xs bg-dark_gray/10 text-white px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-95 group-hover:scale-100 z-10">
+            Skills
+          </span>
         </NavLink>
         <NavLink
           to="/tools"
           className={({ isActive }) =>
-            `p-2 rounded-md flex items-center justify-center ${
+            `group relative p-2 rounded-md flex items-center justify-center ${
               isActive ? "text-orange" : "text-white"
             }`
           }
         >
           <Tool width={20} height={20} />
+          <span className="absolute bottom-[-30px] text-xs bg-dark_gray/10 text-white px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-95 group-hover:scale-100 z-10">
+            Tools
+          </span>
         </NavLink>
         <NavLink
           to="/thoughts"
           className={({ isActive }) =>
-            `p-2 rounded-md flex items-center justify-center ${
+            `group relative p-2 rounded-md flex items-center justify-center ${
               isActive ? "text-orange" : "text-white"
             }`
           }
         >
           <Edit width={20} height={20} />
+          <span className="absolute bottom-[-30px] text-xs bg-dark_gray/10 text-white px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-95 group-hover:scale-100 z-10">
+            Articles
+          </span>
+        </NavLink>
+
+        <NavLink
+          to="/reviews"
+          className={({ isActive }) =>
+            `group relative p-2 rounded-md flex items-center justify-center ${
+              isActive ? "text-orange" : "text-white"
+            }`
+          }
+        >
+          <MessageSquare width={20} height={20} />
+          <span className="absolute bottom-[-30px] text-xs bg-dark_gray/10 text-white px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-95 group-hover:scale-100 z-10">
+            Reviews
+          </span>
         </NavLink>
       </div>
     </div>

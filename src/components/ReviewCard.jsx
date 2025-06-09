@@ -137,7 +137,7 @@ const ReviewCard = () => {
   return (
     <div className="w-full flex flex-col relative">
       <h1 className="text-[42px] md:text-[74px] lg:text-[100px] font-bold text-white leading-none text-center lg:text-start">
-        CLIENT'S <br />
+        SOME <br />
         <span className="text-soft_gray/20">TESTIMONIALS</span>
       </h1>
 
