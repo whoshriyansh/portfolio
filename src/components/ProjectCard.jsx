@@ -37,6 +37,18 @@ const SingleProjectCard = ({ project }) => {
             <ArrowUpRight />
           </a>
         )}
+        {project.articleUrl && (
+          <a
+            href={project?.articleUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-orange hover:scale-110 duration-300"
+            aria-label={`Article for ${project.name}`}
+          >
+            <p>Article</p>
+            <ArrowUpRight />
+          </a>
+        )}
         {project.githubUrl && (
           <a
             href={project?.githubUrl}
@@ -57,12 +69,24 @@ const SingleProjectCard = ({ project }) => {
 const ProjectCard = () => {
   const projects = [
     {
+      id: 5,
+      name: "CI/CD Pipeline",
+      description:
+        "I built a complete CI/CD pipeline using GitHub Actions that triggers on every push to the main branch. It automatically builds a Docker image of the app, pushes it to the container registry, and deploys it to an AWS EC2 instance by pulling the latest image and restarting the container. The setup ensures seamless and consistent deployment without manual steps. I also configured a custom domain to point to the EC2 instance, so the app is accessible via a proper URL. The entire flow is automated, reliable, and production-ready.",
+      imageUrl: "/assets/ci_cd.png",
+      articleUrl:
+        "https://medium.com/@whoshriyansh/deploying-next-js-application-on-aws-ec2-f0d6a1fdd825",
+      // liveUrl: "http://hourstack.publicvm.com/",
+      githubUrl:
+        "https://github.com/whoshriyansh/HourStack/blob/main/.github/workflows/cicd.yml",
+    },
+    {
       id: 1,
       name: "HourStack",
       description:
         "Developed a full-stack, real-time Time Tracking Application using Next.js, featuring comprehensive project, task, and client management modules. The application includes both frontend and backend implementations following industry best practices. Key features include a secure authentication system, complete CRUD operations, global state management (via Zustand/Redux/etc.), and using of Shadcn Library and whole project is made in Typescript.",
       imageUrl: "/assets/hourstack.png",
-      // liveUrl: "https://gargngargsassociates.com/",
+      liveUrl: "http://hourstack.publicvm.com/",
       githubUrl: "https://github.com/whoshriyansh/hourstack",
     },
     {
@@ -90,7 +114,7 @@ const ProjectCard = () => {
         "Developed a comprehensive Admin Dashboard for a business generating over ₹50 lakh/month in revenue, aimed at streamlining client onboarding and internal operations. Built entirely with React, the dashboard integrates with third-party APIs to process loan applications, assist the sales team in managing leads, and automate critical workflows.",
       imageUrl:
         "https://cdn.staropstech.com/clients/udharibazaar/assets/extra-images/logo.webp",
-      // liveUrl: "https://udharibazaar.com/",
+      liveUrl: "https://udharibazaar.com/",
     },
   ];
 

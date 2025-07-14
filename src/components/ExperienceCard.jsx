@@ -40,18 +40,9 @@ const ExperienceCard = () => {
       name: "Freelancing",
       description:
         "I specialize in building MVPs for startups and automating deployment pipelines using modern DevOps practices. I’ve developed scalable cross-platform apps with React Native, set up CI/CD workflows for efficient delivery, and built SEO-optimized websites using WordPress, Wix, and custom code. I also help clients track performance and boost visibility through Google Analytics, search indexing, and SEO management. My focus is always on delivering maintainable code, fast launches, and real business value.",
-      timeline: "JULY 2024 - PRESENT",
+      timeline: "APR 2025 - PRESENT",
       keyTech:
         "React Native, WordPress, Wix, CI/CD, Google Analytics, SEO, DevOps",
-    },
-    {
-      id: 2,
-      name: "Cloud Ingenious",
-      description:
-        "At Cloud Ingenious, I led the frontend development of responsive, SEO-optimized websites from scratch. One key project involved converting a basic Wix site into a high-performing, accessible web experience. I improved SEO traffic by 30% and achieved a 70% boost in accessibility scores by adhering to WCAG standards. I collaborated with designers to bring Figma designs to life with pixel-perfect precision.",
-      liveUrl: "https://www.cloudingenious.com/",
-      timeline: "MAR 2024 - MAY 2024",
-      keyTech: "React, Figma, SEO, Accessibility, Wix",
     },
     {
       id: 3,
@@ -59,7 +50,7 @@ const ExperienceCard = () => {
       description:
         "I led the frontend architecture for multiple projects, including admin dashboards and user portals. My work improved customer onboarding rates by 30% through intuitive UI and robust workflows. I also built a scalable dashboard for a ₹50 lakh/month loan business, integrating third-party APIs for loan processing, client management, and user access control.",
       liveUrl: "https://staropstech.com/",
-      timeline: "NOV 2023 - APR 2024",
+      timeline: "NOV 2023 - Mar 2025",
       keyTech: "React, REST APIs, Dashboard Development, Loan Management",
     },
     {
