@@ -15,22 +15,22 @@ const Homepage = () => {
   return (
     <>
       <Helmet>
-        <title>Freelance React Developer | Shriaynsh Lohia</title>
+        <title>whoshriyansh</title>
         <meta
           name="description"
-          content="I am a freelance React developer specializing in Figma to React, Dashboards, and API Integrations. Hire me to build modern web applications."
+          content="I'm a full-stack developer specializing in the MERN stack, with deep experience in building and deploying scalable applications using the latest Next.js 15. I implement CI/CD pipelines and integrate DevOps tools to ensure production-grade delivery."
         />
         <meta
           name="keywords"
-          content="React Developer, Freelance React Developer, Web Developer in India, Figma to React, API Integration, Dashboard Development"
+          content="React Developer, FullStack Developer, Web Developer in India, Figma to React, API Integration, Dashboard Development"
         />
         <meta
           property="og:title"
-          content="Freelance React Developer | Shriaynsh Lohia"
+          content="Freelance Developer | Shriaynsh Lohia"
         />
         <meta
           property="og:description"
-          content="Expert React developer in India specializing in frontend development and API integrations."
+          content="Expert Full-STack Developer specializing in CReating Full Applications"
         />
         <meta property="og:image" content="your-image-url.jpg" />
         <meta property="og:url" content="https://whoshriyansh.netlify.app/" />
@@ -49,7 +49,7 @@ const Homepage = () => {
                 "https://github.com/whoshriyansh",
                 "https://medium.com/@whoshriyansh"
               ],
-              "jobTitle": "Freelance React Developer",
+              "jobTitle": "Full-Stack Developer",
               "worksFor": {
                 "@type": "Organization",
                 "name": "Self-Employed"
