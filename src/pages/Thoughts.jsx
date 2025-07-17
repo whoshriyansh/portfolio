@@ -1,6 +1,4 @@
-import React from "react";
 import ProfileImg from "../components/ProfileImg";
-import ContactForm from "../components/ContactForm";
 import ThoughtCard from "../components/ThoughtCard";
 import { Helmet } from "react-helmet-async";
 

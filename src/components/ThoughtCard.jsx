@@ -1,4 +1,3 @@
-import React from "react";
 import { ArrowUpRight } from "react-feather";
 
 const SingleThoughtCard = ({ article }) => {
@@ -37,28 +36,28 @@ const SingleThoughtCard = ({ article }) => {
 const ThoughtCard = () => {
   const articles = [
     {
+      name: "How to do Payment Integration in Next.js with Razorpay",
+      description:
+        "Learn how to integrate Razorpay payment gateway in a Next.js application with step-by-step code examples. This guide covers both client and server-side setup, payment verification, and going live",
+      readTime: "5 min",
+      liveUrl:
+        "https://medium.com/@whoshriyansh/how-to-do-payment-integration-in-next-js-with-razorpay-b885e5c3efbc",
+    },
+    {
+      name: "Deploying Next.js Application on AWS EC2",
+      description:
+        "Learn deploy your own Next.js application to the cloud, and not just with a basic Vercel setup. We’re talking about a full CI/CD pipeline.",
+      readTime: "8 min",
+      liveUrl:
+        "https://medium.com/@whoshriyansh/deploying-next-js-application-on-aws-ec2-f0d6a1fdd825",
+    },
+    {
       name: "Centralized API Service in React with Axios",
       description:
         "In React apps, making API requests is common. Instead of duplicating code and adding tokens manually, we can centralize the process with Axios, simplifying our code and ensuring consistency.",
       readTime: "2 min",
       liveUrl:
         "https://medium.com/@whoshriyansh/how-to-create-a-centralized-api-service-in-react-with-axios-96f80fde0436",
-    },
-    {
-      name: "7 Website Mistakes That Kill Your Sales",
-      description:
-        "Your website is more than just a digital storefront; it's a critical component of your business's success. However, certain common mistakes can significantly hinder your sales performance. Let's explore these pitfalls and how to avoid them",
-      readTime: "2 min",
-      liveUrl:
-        "https://www.linkedin.com/pulse/7-website-mistakes-kill-your-sales-shriyansh-lohia-kfakc/?trackingId=iw%2BU4Zh%2FQI2h%2BgttPhTLXA%3D%3D",
-    },
-    {
-      name: "Why Every Local Business Needs a Website",
-      description:
-        "Maybe you were looking for a nearby bakery, a reliable plumber, a new gym, or even a salon. And what did you do? You pulled out your phone, typed a few words into Google, and clicked on one of the first results that looked trustworthy.",
-      readTime: "3 min",
-      liveUrl:
-        "https://www.linkedin.com/pulse/why-every-local-business-needs-website-social-media-isnt-lohia-9fmac/?trackingId=5Cu%2FYs6MRHKBhImQThnT4A%3D%3D",
     },
   ];
 
