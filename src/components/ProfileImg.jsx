@@ -1,5 +1,4 @@
-import React from "react";
-import { GitHub, Instagram, Linkedin, Mail } from "react-feather";
+import { GitHub, Linkedin, Mail } from "react-feather";
 
 const ProfileImg = () => {
   return (
@@ -13,10 +12,11 @@ const ProfileImg = () => {
           />
         </div>
 
-        <div className="text-center flex flex-col gap-3">
-          <h1 className="font-bold text-black text-4xl">Shriyansh Kr. Lohia</h1>
-          <p className="font-medium  text-base text-dark_gray">
-            Full-Stack Developer | MERN + Next.js 15 | CI/CD & DevOps Ready
+        <div className="text-center flex flex-col gap-2">
+          <h1 className="font-bold text-black text-3xl">Shriyansh Kr. Lohia</h1>
+          <p className="font-medium text-sm text-dark_gray p-1 lg:px-4">
+            Full-Stack Developer | JavaScrript | Python | MERN + Next.js 15 |
+            React Native
           </p>
         </div>
 
@@ -27,7 +27,7 @@ const ProfileImg = () => {
           <a href="https://github.com/whoshriyansh" target="blank">
             <GitHub />
           </a>
-          <a href="mailto:shriyanshlohia0@gmail.com" target="blank">
+          <a href="mailto:whoshriyansh@gmail.com" target="blank">
             <Mail />
           </a>
         </div>

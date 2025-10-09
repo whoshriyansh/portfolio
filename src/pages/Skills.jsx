@@ -1,6 +1,4 @@
-import React from "react";
 import ProfileImg from "../components/ProfileImg";
-import ContactForm from "../components/ContactForm";
 import SkillsCard from "../components/SkillsCard";
 
 const Skills = () => {

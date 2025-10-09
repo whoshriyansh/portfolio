@@ -1,14 +1,15 @@
-import React from "react";
-import { ArrowUpRight } from "react-feather";
+import Header from "./shared/Header";
 
 const SingleExperienceCard = ({ experience }) => {
   return (
     <div className="w-full flex justify-between items-start hover:bg-soft_gray/10 duration-300 px-5 py-5 rounded-2xl">
-      <div className="flex gap-5 items-start">
-        <div>
-          <h3 className="text-lg font-medium text-white">{experience?.name}</h3>
-          <p className="text-sm text-soft_gray">{experience?.description}</p>
-          <p className="text-sm text-dark_gray font-medium">
+      <div className="flex gap-6 items-start">
+        <div className="flex flex-col items-start gap-1">
+          <h3 className="text-lg font-semibold text-white">
+            {experience?.name}
+          </h3>
+          <p className="text-xs text-soft_gray">{experience?.description}</p>
+          <p className="text-sm text-dark_gray font-normal">
             Key Tech: {experience?.keyTech}
           </p>
           <p className="text-xs text-dark_gray font-semibold">
@@ -16,7 +17,7 @@ const SingleExperienceCard = ({ experience }) => {
           </p>
         </div>
       </div>
-      <div className="text-orange">
+      {/* <div className="text-orange">
         {experience.liveUrl ? (
           <a
             href={experience?.liveUrl}
@@ -28,7 +29,7 @@ const SingleExperienceCard = ({ experience }) => {
         ) : (
           " "
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -42,7 +43,23 @@ const ExperienceCard = () => {
         "I specialize in building MVPs for startups and automating deployment pipelines using modern DevOps practices. I’ve developed scalable cross-platform apps with React Native, set up CI/CD workflows for efficient delivery, and built SEO-optimized websites using WordPress, Wix, and custom code. I also help clients track performance and boost visibility through Google Analytics, search indexing, and SEO management. My focus is always on delivering maintainable code, fast launches, and real business value.",
       timeline: "APR 2025 - PRESENT",
       keyTech:
-        "React Native, WordPress, Wix, CI/CD, Google Analytics, SEO, DevOps",
+        "React Native, React, Frontend, Backend, Google Analytics, SEO, DevOps",
+    },
+    {
+      id: 5,
+      name: "Garg N Garg's Associates",
+      description:
+        "Independently designed the entire UI/UX for the website in Figma, translating it into a responsive and animated React application. Implemented clean, modular code with performance-focused practices and modern animation techniques for smooth user interactions. Deployed the complete website on AWS EC2, configured with Nginx and PM2 to ensure scalability, uptime, and the ability to handle real-time traffic. Managed end-to-end development from design to deployment.",
+      timeline: "Apr 2025 - Jun 2025",
+      keyTech: "React, Express.js, Backend, Google Analytics, SEO",
+    },
+    {
+      id: 6,
+      name: "Cloud Ingenious",
+      description:
+        "Designed and developed the complete Cloud Ingenious website using Wix Studio, ensuring seamless responsiveness across devices. Led end-to-end optimization, including SEO, accessibility, and performance for a fully production-ready launch.",
+      timeline: "Jul 2024 - Aug 2024",
+      keyTech: "WordPress, Wix, CI/CD, Google Analytics, SEO",
     },
     {
       id: 3,
@@ -67,17 +84,14 @@ const ExperienceCard = () => {
 
   return (
     <div className="w-full flex flex-col ">
-      <h1 className="text-[42px] md:text-[74px] lg:text-[100px] font-bold text-white leading-none text-center lg:text-start">
-        +2 YEARS OF
-        <br />
-        <span className="text-soft_gray/20">EXPERIENCE</span>
-      </h1>
-      <p className="text-gray px-2 text-center  lg:text-left">
-        Over the past 15 months, I dedicated myself to intense self-learning,
+      <Header
+        firstWord="2+"
+        secondWord="YOE"
+        description="Over the last 2 Years, I dedicated myself to intense self-learning,
         mastering modern web technologies and working with local businesses as a
         freelance developer. This period sharpened both my technical and
-        client-facing skills.
-      </p>
+        client-facing skills."
+      />
       <div className="flex flex-col mt-10">
         {experiences.map((experience, id) => (
           <SingleExperienceCard key={id} experience={experience} />

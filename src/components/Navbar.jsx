@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Home,
   Folder,
@@ -6,14 +5,14 @@ import {
   Edit,
   Briefcase,
   Command,
-  MessageSquare,
+  Download,
 } from "react-feather";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <div className="bg-transparent w-full flex justify-center">
-      <div className="w-[90%] sm:w-[60%] md:w-[40%] lg:w-[30%] xl:w-[20%] flex gap-4 items-center px-2 py-2 justify-center mt-5 mb-10 bg-dark_gray/10 rounded-2xl">
+      <div className="w-[90%] sm:w-[60%] md:w-[40%] lg:w-[40%] xl:w-[30%] flex gap-4 items-center px-2 py-2 justify-center mt-5 mb-10 bg-dark_gray/10 rounded-2xl">
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -94,19 +93,16 @@ const Navbar = () => {
           </span>
         </NavLink>
 
-        <NavLink
-          to="/reviews"
-          className={({ isActive }) =>
-            `group relative p-2 rounded-md flex items-center justify-center ${
-              isActive ? "text-orange" : "text-white"
-            }`
-          }
+        <a
+          href="/resume.pdf"
+          download="Shriyansh_Lohia.pdf"
+          className="group relative p-2 rounded-md flex items-center justify-center text-white hover:text-orange transition-colors"
         >
-          <MessageSquare width={20} height={20} />
+          <Download width={20} height={20} />
           <span className="absolute bottom-[-30px] text-xs bg-dark_gray/10 text-white px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-95 group-hover:scale-100 z-10">
-            Reviews
+            Resume
           </span>
-        </NavLink>
+        </a>
       </div>
     </div>
   );

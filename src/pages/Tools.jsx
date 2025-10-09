@@ -1,4 +1,3 @@
-import React from "react";
 import ProfileImg from "../components/ProfileImg";
 import ToolsCard from "../components/ToolsCard";
 

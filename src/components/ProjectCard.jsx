@@ -1,30 +1,30 @@
-import React from "react";
 import { ArrowUpRight } from "react-feather";
+import Header from "./shared/Header";
 
 const SingleProjectCard = ({ project }) => {
   return (
-    <div className="w-full flex flex-col items-end gap-4 hover:bg-soft_gray/10 duration-300 px-5 py-5 rounded-2xl cursor-pointer">
-      {/* ✅ Project Description */}
-      <div className="flex flex-col md:flex-row gap-4 items-start">
-        {/* ✅ Image with Lazy Loading */}
-        <div className="h-16 w-16 md:h-36 md:w-1/2 flex items-center justify-center">
+    <div className="w-full flex flex-col items-end gap-2 hover:bg-soft_gray/10 duration-300 px-2 py-2 rounded-2xl cursor-pointer">
+      {/* Project Description */}
+      <div className="flex flex-col md:flex-row gap-2 items-start justify-start">
+        {/* Image with Lazy Loading */}
+        <div className="flex items-center justify-center my-auto w-24 h-24 md:w-28 md:h-28 flex-shrink-0">
           <img
             src={project?.imageUrl}
             alt={project?.name || "Project Image"}
             loading="lazy"
-            className="rounded-lg"
+            className="w-full h-full object-contain rounded-lg"
           />
         </div>
 
-        {/* ✅ Project Details */}
+        {/* Project Details */}
         <div>
-          <h2 className="text-xl font-semibold text-white">{project?.name}</h2>
-          <p className="text-sm text-soft_gray">{project?.description}</p>
+          <h2 className="text-lg font-semibold text-white">{project?.name}</h2>
+          <p className="text-xs text-soft_gray">{project?.description}</p>
         </div>
       </div>
 
       {/* ✅ Links Section */}
-      <div className="flex gap-4 mt-2">
+      <div className="flex gap-4">
         {project.liveUrl && (
           <a
             href={project?.liveUrl}
@@ -33,7 +33,7 @@ const SingleProjectCard = ({ project }) => {
             className="flex items-center gap-1 text-orange hover:scale-110 duration-300"
             aria-label={`Live demo of ${project.name}`}
           >
-            <p>Live Demo</p>
+            <p className="text-xs">Live Demo</p>
             <ArrowUpRight />
           </a>
         )}
@@ -45,7 +45,7 @@ const SingleProjectCard = ({ project }) => {
             className="flex items-center gap-1 text-orange hover:scale-110 duration-300"
             aria-label={`Article for ${project.name}`}
           >
-            <p>Article</p>
+            <p className="text-xs">Article</p>
             <ArrowUpRight />
           </a>
         )}
@@ -57,7 +57,7 @@ const SingleProjectCard = ({ project }) => {
             className="flex items-center gap-1 text-orange hover:scale-110 duration-300"
             aria-label={`View code of ${project.name}`}
           >
-            <p>Code</p>
+            <p className="text-xs">Code</p>
             <ArrowUpRight />
           </a>
         )}
@@ -69,8 +69,30 @@ const SingleProjectCard = ({ project }) => {
 const ProjectCard = () => {
   const projects = [
     {
+      id: 6,
+      name: "Code Sail: VS Code Extenion for Planning and Analysing",
+      description:
+        "I built a complete CI/CD pipeline using GitHub Actions that triggers on every push to the main branch. ",
+      imageUrl: "/assets/codesail.svg",
+      // articleUrl:
+      //   "https://medium.com/@whoshriyansh/deploying-next-js-application-on-aws-ec2-f0d6a1fdd825",
+      // liveUrl: "http://hourstack.publicvm.com/",
+      githubUrl: "https://github.com/whoshriyansh/CodeSail",
+    },
+    {
+      id: 6,
+      name: "Genbloc: An Application that lets you finish your task",
+      description:
+        "I built a complete CI/CD pipeline using GitHub Actions that triggers on every push to the main branch. It automatically builds a Docker image of the app, pushes it to the container registry, and deploys it to an AWS EC2 instance by pulling the latest image and restarting the container. The setup ensures seamless and consistent deployment without manual steps. I also configured a custom domain to point to the EC2 instance, so the app is accessible via a proper URL. The entire flow is automated, reliable, and production-ready.",
+      imageUrl: "/assets/genbloc.png",
+      // articleUrl:
+      //   "https://medium.com/@whoshriyansh/deploying-next-js-application-on-aws-ec2-f0d6a1fdd825",
+      // liveUrl: "http://hourstack.publicvm.com/",
+      githubUrl: "https://github.com/whoshriyansh/genbloc",
+    },
+    {
       id: 5,
-      name: "CI/CD Pipeline",
+      name: "Github Actions CI/CD Pipeline with AWS EC2",
       description:
         "I built a complete CI/CD pipeline using GitHub Actions that triggers on every push to the main branch. It automatically builds a Docker image of the app, pushes it to the container registry, and deploys it to an AWS EC2 instance by pulling the latest image and restarting the container. The setup ensures seamless and consistent deployment without manual steps. I also configured a custom domain to point to the EC2 instance, so the app is accessible via a proper URL. The entire flow is automated, reliable, and production-ready.",
       imageUrl: "/assets/ci_cd.png",
@@ -82,7 +104,7 @@ const ProjectCard = () => {
     },
     {
       id: 1,
-      name: "HourStack",
+      name: "HourStack: A Planner for Real-time Time Tracking",
       description:
         "Developed a full-stack, real-time Time Tracking Application using Next.js, featuring comprehensive project, task, and client management modules. The application includes both frontend and backend implementations following industry best practices. Key features include a secure authentication system, complete CRUD operations, global state management (via Zustand/Redux/etc.), and using of Shadcn Library and whole project is made in Typescript.",
       imageUrl: "/assets/hourstack.png",
@@ -90,17 +112,8 @@ const ProjectCard = () => {
       githubUrl: "https://github.com/whoshriyansh/hourstack",
     },
     {
-      id: 2,
-      name: "Garg N Garg's Associates",
-      description:
-        "Designed a custom UI in Figma and developed the complete website using WordPress, leveraging its flexibility for scalable content management. Implemented Google Analytics for traffic insights and followed SEO best practices to enhance visibility and search engine ranking.",
-      imageUrl:
-        "https://gargngargsassociates.com/wp-content/uploads/2025/04/Frame-33.png",
-      liveUrl: "https://gargngargsassociates.com/",
-    },
-    {
       id: 3,
-      name: "Stockin",
+      name: "Stockin: A Simple UI Dashboard",
       description:
         "Developed a fully responsive stock market dashboard using core React and JavaScript, designed to showcase advanced UI/UX skills and component architecture. The dashboard fetches real-time data from multiple stock APIs provided by different distributors and includes custom-built UI components such as charts, cards, and filters to display complex data cleanly and interactively.",
       imageUrl: "/assets/stockin.png",
@@ -119,19 +132,16 @@ const ProjectCard = () => {
   ];
 
   return (
-    <div className="w-full flex flex-col">
-      <h1 className="text-[42px] md:text-[74px] lg:text-[100px] font-bold text-white leading-none text-center lg:text-start">
-        RECENT <br />
-        <span className="text-soft_gray/20">PROJECTS</span>
-      </h1>
-      <p className="text-gray px-2 text-center  lg:text-left">
-        My recent projects demonstrate hands-on experience with both classic
-        React and modern Next.js, as well as CMS platforms like Wix and
-        WordPress. These projects reflect the depth of my skillset and my
-        ability to deliver across diverse tech stacks.
-      </p>
+    <div className="w-full flex flex-col gap-4">
+      <Header
+        firstWord={"RECENT"}
+        secondWord={"PROJECTS"}
+        description={
+          "My recent projects demonstrate hands-on experience with both classic React and modern Next.js, as well as CMS platforms like Wix and WordPress. These projects reflect the depth of my skillset and my ability to deliver across diverse tech stacks."
+        }
+      />
 
-      <div className="flex flex-col mt-10">
+      <div className="flex flex-col gap-4">
         {projects.map((project) => (
           <SingleProjectCard key={project.id} project={project} />
         ))}

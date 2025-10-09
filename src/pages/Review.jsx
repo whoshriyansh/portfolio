@@ -1,6 +1,4 @@
-import React from "react";
 import ProfileImg from "../components/ProfileImg";
-import ContactForm from "../components/ContactForm";
 import ReviewCard from "../components/ReviewCard";
 
 const Review = () => {

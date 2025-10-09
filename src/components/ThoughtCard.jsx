@@ -1,17 +1,14 @@
 import { ArrowUpRight } from "react-feather";
+import Header from "./shared/Header";
 
 const SingleThoughtCard = ({ article }) => {
   return (
     <div className="w-full flex justify-between items-start hover:bg-soft_gray/10 duration-300 px-5 py-5 rounded-2xl">
-      <div className="flex gap-5 items-start">
-        <div className="flex flex-col gap-3">
-          <h3 className="text-white text-[20px] md:text-[26px] font-semibold">
-            {article?.name}
-          </h3>
-          <p className="text-base font-normal text-dark_gray">
-            {article?.description}
-          </p>
-          <p className="text-base font-normal text-dark_gray">
+      <div className="flex gap-2 items-start">
+        <div className="flex flex-col gap-1">
+          <h3 className="text-white text-lg font-semibold">{article?.name}</h3>
+          <p className="text-xs text-soft_gray">{article?.description}</p>
+          <p className="text-xs text-dark_gray font-semibold">
             {article?.readTime}
           </p>
         </div>
@@ -35,6 +32,14 @@ const SingleThoughtCard = ({ article }) => {
 
 const ThoughtCard = () => {
   const articles = [
+    {
+      name: "Understanding Access Tokens and Refresh Tokens in a MERN App",
+      description:
+        "JSON Web Token, mostly referred to as JWT, is a standard (not a library) created by IETF (not OAuth) and it is used to generate tokens for security purposes in your application. JWTs are used for validation, access control, payments, admin control, etc.",
+      readTime: "5 min",
+      liveUrl:
+        "https://dev.to/whoshriyansh/understanding-access-tokens-and-refresh-tokens-in-a-mern-app-pdl",
+    },
     {
       name: "How to do Payment Integration in Next.js with Razorpay",
       description:
@@ -63,16 +68,13 @@ const ThoughtCard = () => {
 
   return (
     <div className="w-full flex flex-col ">
-      <h1 className="text-[42px] md:text-[74px] lg:text-[100px] font-bold text-white leading-none text-center lg:text-start">
-        SOME
-        <br />
-        <span className="text-soft_gray/20">THOUGHTS</span>
-      </h1>
-      <p className="text-gray px-2 text-center  lg:text-left">
-        These articles reflect my journey, what I’ve learned, where I got stuck,
-        and how I solved real problems. I write them to help developers who
-        might be facing the same challenges I did.
-      </p>
+      <Header
+        firstWord={"SOME"}
+        secondWord={"THOUGHTS"}
+        description={
+          "These articles reflect my journey, what I’ve learned, where I got stuck, and how I solved real problems. I write them to help developers who might be facing the same challenges I did."
+        }
+      />
       <div className="flex flex-col mt-10">
         {articles.map((article, index) => (
           <SingleThoughtCard key={index} article={article} />

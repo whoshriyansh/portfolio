@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import Header from "./shared/Header";
 
 // SingleToolCard Component (Now receives dynamic data as props)
 const SingleToolCard = ({ toolName, toolUsage, Icon }) => {
@@ -8,8 +9,8 @@ const SingleToolCard = ({ toolName, toolUsage, Icon }) => {
         {Icon}
       </div>
       <div className="flex flex-col justify-center">
-        <h3 className="leading-none text-2xl font-semibold">{toolName}</h3>
-        <p className="text-soft_gray">{toolUsage}</p>
+        <h3 className="leading-none text-lg font-semibold">{toolName}</h3>
+        <p className="text-dark_gray text-xs">{toolUsage}</p>
       </div>
     </div>
   );
@@ -67,16 +68,13 @@ const ToolsCard = () => {
 
   return (
     <div className="w-full flex flex-col">
-      <h1 className="text-[42px] md:text-[74px] lg:text-[100px] font-bold text-white leading-none text-center lg:text-start">
-        TOP
-        <br />
-        <span className="text-soft_gray/20">TOOLS</span>
-      </h1>
-      <p className="text-gray px-2 text-center  lg:text-left">
-        These are the core tools and technologies I use regularly, from frontend
-        frameworks and backend services to deployment, testing, and debugging
-        utilities that support scalable, maintainable development.
-      </p>
+      <Header
+        firstWord={"TOP"}
+        secondWord={"TOOLS"}
+        description={
+          "These are the core tools and technologies I use regularly, from frontend frameworks and backend services to deployment, testing, and debugging utilities that support scalable, maintainable development."
+        }
+      />
       <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10 px-4">
         {tools.map((tool, index) => (
           <SingleToolCard
