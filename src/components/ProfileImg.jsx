@@ -3,18 +3,18 @@ import { GitHub, Linkedin, Mail } from "react-feather";
 const ProfileImg = () => {
   return (
     <div className="w-full h-[344px] md:h-[540px] lg:h-[640px]">
-      <div className="bg-white rounded-lg flex flex-col gap-5 items-center justify-center py-10">
-        <div className="rounded-2xl w-64">
+      <div className=" rounded-lg flex flex-col gap-5 items-center justify-center py-10">
+        <div className="rounded-2xl w-96">
           <img
-            src="/assets/profile.jpg"
+            src="/assets/profile2.png"
             alt="Profile Photos"
             className="rounded-2xl"
           />
         </div>
 
         <div className="text-center flex flex-col gap-2">
-          <h1 className="font-bold text-black text-3xl">Shriyansh Kr. Lohia</h1>
-          <p className="font-medium text-sm text-dark_gray p-1 lg:px-4">
+          <h1 className="font-bold text-white text-3xl">Shriyansh Kr. Lohia</h1>
+          <p className="font-normal text-sm text-gray p-1 lg:px-4">
             Full-Stack Developer | JavaScrript | Python | MERN + Next.js 15 |
             React Native
           </p>

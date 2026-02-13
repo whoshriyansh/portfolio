@@ -1,18 +1,17 @@
-import ProfileImg from "../components/ProfileImg";
-import IntroCard from "../components/IntroCard";
-import HighlightCard from "../components/HighlightCard";
-import ProjectCard from "../components/ProjectCard";
-import ExperienceCard from "../components/ExperienceCard";
-import ToolsCard from "../components/ToolsCard";
-import ThoughtCard from "../components/ThoughtCard";
-import SkillsCard from "../components/SkillsCard";
 import { Helmet } from "react-helmet-async";
+import HeroSection from "../components/HeroSection";
+import WorkSection from "../components/WorkSection";
+import ExperienceSection from "../components/ExperienceSection";
+import SkillsSection from "../components/SkillsSection";
+import ContactSection from "../components/ContactSection";
+import PremiumFooter from "../components/PremiumFooter";
+import PageTransition from "../components/PageTransition";
 
 const Homepage = () => {
   return (
     <>
       <Helmet>
-        <title>whoshriyansh</title>
+        <title>Shriyansh Kr. Lohia — Full-Stack Developer</title>
         <meta
           name="description"
           content="I'm a full-stack developer specializing in the MERN stack, with deep experience in building and deploying scalable applications using the latest Next.js 15. I implement CI/CD pipelines and integrate DevOps tools to ensure production-grade delivery."
@@ -23,11 +22,11 @@ const Homepage = () => {
         />
         <meta
           property="og:title"
-          content="Freelance Developer | Shriaynsh Lohia"
+          content="Shriyansh Kr. Lohia | Full-Stack Developer"
         />
         <meta
           property="og:description"
-          content="Expert Full-STack Developer specializing in CReating Full Applications"
+          content="Expert Full-Stack Developer specializing in creating production-grade applications."
         />
         <meta property="og:image" content="your-image-url.jpg" />
         <meta property="og:url" content="https://whoshriyansh.netlify.app/" />
@@ -38,7 +37,7 @@ const Homepage = () => {
             {
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Your Name",
+              "name": "Shriyansh Kr. Lohia",
               "url": "https://whoshriyansh.netlify.app/",
               "sameAs": [
                 "https://www.linkedin.com/in/whoshriyansh/",
@@ -55,28 +54,27 @@ const Homepage = () => {
           `}
         </script>
       </Helmet>
-      <div className="container mx-auto flex flex-col lg:flex-row">
-        {/* Fixed Profile Section */}
-        <div className="w-full lg:w-6/12 lg:h-screen lg:sticky lg:top-0 flex items-center justify-center lg:px-16  ">
-          <ProfileImg />
-        </div>
 
-        {/* Scrollable Content Section */}
-        <div className="w-full lg:w-8/12 overflow-y-auto scrollbar-hidden mt-40 md:mt-10 lg:mt-28">
-          <div className="space-y-20 flex flex-col justify-center items-center lg:items-start">
-            <IntroCard />
-            {/* <CountCard /> */}
-            <HighlightCard />
-            <ProjectCard />
-            <ExperienceCard />
-            <SkillsCard />
-            <ToolsCard />
-            {/* <ReviewCard /> */}
-            <ThoughtCard />
-            {/* <ContactForm /> */}
-          </div>
-        </div>
-      </div>
+      <PageTransition>
+        <main className="relative">
+          {/* Section separators are built into each section */}
+          <HeroSection />
+
+          <div className="separator-line max-w-4xl mx-auto" />
+          <WorkSection />
+
+          <div className="separator-line max-w-4xl mx-auto" />
+          <ExperienceSection />
+
+          <div className="separator-line max-w-4xl mx-auto" />
+          <SkillsSection />
+
+          <div className="separator-line max-w-4xl mx-auto" />
+          <ContactSection />
+
+          <PremiumFooter />
+        </main>
+      </PageTransition>
     </>
   );
 };

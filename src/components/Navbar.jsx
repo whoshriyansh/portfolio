@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="bg-transparent w-full flex justify-center">
-      <div className="w-[90%] sm:w-[60%] md:w-[40%] lg:w-[40%] xl:w-[30%] flex gap-4 items-center px-2 py-2 justify-center mt-5 mb-10 bg-dark_gray/10 rounded-2xl">
+      <div className="w-[90%] sm:w-[60%] md:w-[40%] lg:w-[40%] xl:w-[30%] flex gap-4 items-center px-2 py-2 justify-center mt-5 mb-10 bg-white/5 rounded-2xl rounded-[16px] backdrop-blur-[1px]">
         <NavLink
           to="/"
           className={({ isActive }) =>

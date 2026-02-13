@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import CustomCursor from "../components/CustomCursor";
+import GrainOverlay from "../components/GrainOverlay";
+import IconNav from "../components/IconNav";
 
 const Layout = () => {
   return (
-    <>
-      <Navbar />
+    <div className="relative min-h-screen bg-black">
+      <CustomCursor />
+      <GrainOverlay />
+      <IconNav />
       <Outlet />
-      <Footer />
-    </>
+    </div>
   );
 };
 
