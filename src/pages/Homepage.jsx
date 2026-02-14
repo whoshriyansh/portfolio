@@ -6,6 +6,7 @@ import SkillsSection from "../components/SkillsSection";
 import ContactSection from "../components/ContactSection";
 import PremiumFooter from "../components/PremiumFooter";
 import PageTransition from "../components/PageTransition";
+import ToolsSection from "../components/ToolsSection";
 
 const Homepage = () => {
   return (
@@ -68,6 +69,9 @@ const Homepage = () => {
 
           <div className="separator-line max-w-4xl mx-auto" />
           <SkillsSection />
+
+           <div className="separator-line max-w-4xl mx-auto" />
+          <ToolsSection />
 
           <div className="separator-line max-w-4xl mx-auto" />
           <ContactSection />

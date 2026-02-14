@@ -12,18 +12,10 @@ const projects = [
       "A powerful VS Code extension that helps developers plan, analyse, and track their coding workflow. Built with modern extension APIs for seamless integration into the development environment.",
     imageUrl: "/assets/codesail.svg",
     techStack: ["VS Code API", "JavaScript", "Node.js"],
+    liveUrl: "https://marketplace.visualstudio.com/items?itemName=ws-codesail.codesail",
     githubUrl: "https://github.com/whoshriyansh/CodeSail",
   },
-  {
-    id: 2,
-    name: "Genbloc",
-    tagline: "Task Management Application",
-    description:
-      "A complete task management application that lets you organize, track, and finish your tasks efficiently. Built with a focus on clean UI and smooth user experience with real-time updates.",
-    imageUrl: "/assets/genbloc.png",
-    techStack: ["React", "Node.js", "MongoDB", "Express"],
-    githubUrl: "https://github.com/whoshriyansh/genbloc",
-  },
+  
   {
     id: 3,
     name: "CI/CD Pipeline",
@@ -47,6 +39,16 @@ const projects = [
     techStack: ["Next.js", "TypeScript", "Zustand", "Shadcn UI"],
     liveUrl: "http://hourstack.publicvm.com/",
     githubUrl: "https://github.com/whoshriyansh/hourstack",
+  },
+  {
+    id: 2,
+    name: "Genbloc",
+    tagline: "Task Management Application",
+    description:
+      "A complete task management application that lets you organize, track, and finish your tasks efficiently. Built with a focus on clean UI and smooth user experience with real-time updates.",
+    imageUrl: "/assets/genbloc.png",
+    techStack: ["React", "Node.js", "MongoDB", "Express"],
+    githubUrl: "https://github.com/whoshriyansh/genbloc",
   },
   {
     id: 5,

@@ -9,6 +9,7 @@ import {
   Download,
   Menu,
   X,
+  Tool,
 } from "react-feather";
 
 const navItems = [
@@ -16,6 +17,7 @@ const navItems = [
   { icon: <Folder size={18} />, label: "Work", href: "#work" },
   { icon: <Briefcase size={18} />, label: "Experience", href: "#experience" },
   { icon: <Code size={18} />, label: "Skills", href: "#skills" },
+  { icon: <Tool size={18} />, label: "Tools", href: "#tools" },
   { icon: <Mail size={18} />, label: "Contact", href: "#contact" },
 ];
 
@@ -41,7 +43,7 @@ const IconNav = () => {
         transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
         className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-1"
       >
-        <div className="bg-surface/80 backdrop-blur-md border border-white/5 rounded-full py-4 px-2 flex flex-col items-center gap-1">
+        <div className="bg-surface/80 backdrop-blur-md border border-white/5 rounded-lg py-4 px-2 flex flex-col items-center gap-1">
           {navItems.map((item, i) => (
             <motion.a
               key={item.label}
@@ -139,7 +141,7 @@ const IconNav = () => {
             ))}
 
             <motion.a
-              href="/resume.pdf"
+              href="/resume2.pdf"
               download="Shriyansh_Lohia.pdf"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

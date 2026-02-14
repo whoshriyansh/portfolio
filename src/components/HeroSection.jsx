@@ -106,11 +106,11 @@ const HeroSection = () => {
         {/* Description */}
         <motion.p
           variants={itemVariants}
-          className="text-soft_gray/70 text-sm md:text-base max-w-xl mx-auto leading-relaxed mb-12 font-light"
+          className="text-soft_gray/70 text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-12 font-light"
         >
           Specializing in MERN Stack, Next.js & React Native.
           <br className="hidden md:block" />
-          Building scalable, production-grade applications with modern DevOps.
+          Building scalable, production-grade applications with modern Tools and Architecture.
         </motion.p>
 
         {/* Social links */}

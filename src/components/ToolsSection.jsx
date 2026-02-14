@@ -3,100 +3,71 @@ import { motion, useInView } from "framer-motion";
 import { Icon } from "@iconify/react";
 import SectionHeader from "./shared/SectionHeader";
 
-const skills = [
+const tools = [
   {
-    name: "JavaScript",
-    category: "Language",
-    icon: "logos:javascript",
-    proficiency: 90,
-  },
-  {
-    name: "Python",
-    category: "Language",
-    icon: "logos:python",
-    proficiency: 60,
-  },
-  {
-    name: "React",
-    category: "Frontend",
-    icon: "logos:react",
-    proficiency: 90,
-  },
-  {
-    name: "React Native",
-    category: "Mobile",
-    icon: "devicon:reactnative-wordmark",
-    proficiency: 60,
-  },
-  {
-    name: "Next.js",
-    category: "Framework",
-    icon: "logos:nextjs-icon",
+    name: "Git",
+    category: "Version Control",
+    icon: "logos:git-icon",
     proficiency: 80,
   },
   {
-    name: "TypeScript",
-    category: "Language",
-    icon: "logos:typescript-icon",
+    name: "GitHub",
+    category: "Version Control",
+    icon: "logos:github-icon",
+    proficiency: 90,
+  },
+  {
+    name: "GitLab",
+    category: "Version Control",
+    icon: "logos:gitlab-icon",
     proficiency: 70,
   },
   {
-    name: "Zod",
-    category: "Validation",
-    icon: "logos:zod",
-    proficiency: 60,
-  },
-  {
-    name: "React Query",
-    category: "Data Fetching",
-    icon: "logos:react-query-icon",
-    proficiency: 50,
-  },
-  {
-    name: "Redux Toolkit",
-    category: "State Management",
-    icon: "devicon:redux",
-    proficiency: 60,
-  },
-  {
-    name: "Node.js",
-    category: "Backend",
-    icon: "logos:nodejs-icon",
-    proficiency: 80,
-  },
-  {
-    name: "Express.js",
-    category: "Backend",
-    icon: "devicon:express",
-    proficiency: 80,
-  },
-  {
-    name: "MongoDB",
-    category: "Database",
-    icon: "logos:mongodb-icon",
-    proficiency: 75,
-  },
-  {
-    name: "Tailwind CSS",
-    category: "Styling",
-    icon: "devicon:tailwindcss",
+    name: "VS Code",
+    category: "Editor",
+    icon: "logos:visual-studio-code",
     proficiency: 90,
   },
   {
-    name: "Docker",
-    category: "DevOps",
-    icon: "devicon:docker",
-    proficiency: 60,
+    name: "Postman",
+    category: "API Testing",
+    icon: "logos:postman-icon",
+    proficiency: 90,
   },
   {
-    name: "AWS",
-    category: "Cloud",
-    icon: "logos:aws",
-    proficiency: 50,
+    name: "Swagger",
+    category: "API Documentation",
+    icon: "logos:swagger",
+    proficiency: 80,
   },
+  {
+    name: "Linux",
+    category: "Operating System",
+    icon: "logos:linux-tux",
+    proficiency: 90,
+  },
+  {
+    name: "Figma",
+    category: "Design",
+    icon: "logos:figma",
+    proficiency: 88,
+  },
+  {
+    name: "Slack",
+    category: "Communication",
+    icon: "logos:slack-icon",
+    proficiency: 85,
+  },
+  {
+    name: "Teams",
+    category: "Communication",
+    icon: "logos:microsoft-teams",
+    proficiency: 90,
+  },
+ 
 ];
 
-const SkillItem = ({ skill, index }) => {
+const ToolItem = ({ tool, index }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-20px" });
 
@@ -117,13 +88,13 @@ const SkillItem = ({ skill, index }) => {
       {/* Icon + info */}
       <div className="flex items-center gap-4">
         <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-light group-hover:bg-orange/10 transition-colors duration-300">
-          <Icon icon={skill.icon} width={24} height={24} />
+          <Icon icon={tool.icon} width={24} height={24} />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="font-display font-semibold text-sm text-white group-hover:text-orange transition-colors duration-300">
-            {skill.name}
+            {tool.name}
           </h3>
-          <p className="text-[11px] text-soft_gray/40">{skill.category}</p>
+          <p className="text-[11px] text-soft_gray/40">{tool.category}</p>
         </div>
       </div>
 
@@ -131,7 +102,7 @@ const SkillItem = ({ skill, index }) => {
       <div className="mt-4 h-1 w-full bg-white/5 rounded-full overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
-          animate={isInView ? { width: `${skill.proficiency}%` } : {}}
+          animate={isInView ? { width: `${tool.proficiency}%` } : {}}
           transition={{ duration: 1, delay: index * 0.05 + 0.3, ease: "easeOut" }}
           className="h-full bg-gradient-to-r from-orange to-orange-light rounded-full"
         />
@@ -143,19 +114,19 @@ const SkillItem = ({ skill, index }) => {
   );
 };
 
-const SkillsSection = () => {
+const ToolsSection = () => {
   return (
-    <section id="skills" className="relative py-32 px-6">
+    <section id="tools" className="relative py-32 px-6">
       <div className="max-w-6xl mx-auto">
         <SectionHeader
-          label="Expertise"
-          title="Skills"
-          description="Technologies I use daily to build scalable, production-grade applications."
+          label="Daily Life"
+          title="Tools"
+          description="Tools I use daily to build scalable, production-grade applications."
         />
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-16">
-          {skills.map((skill, i) => (
-            <SkillItem key={skill.name} skill={skill} index={i} />
+          {tools.map((tool, i) => (
+            <ToolItem key={tool.name} tool={tool} index={i} />
           ))}
         </div>
       </div>
@@ -163,4 +134,4 @@ const SkillsSection = () => {
   );
 };
 
-export default SkillsSection;
+export default ToolsSection;
