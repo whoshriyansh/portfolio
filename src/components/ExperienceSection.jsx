@@ -5,9 +5,18 @@ import SectionHeader from "./shared/SectionHeader";
 const experiences = [
   {
     id: 1,
+    role: "Full-Stack Developer",
+    company: "Varaniti Consultancy Services (Volvrit)",
+    timeline: "Nov 2025 — Feb 2025",
+    description:
+      "Delivered internal tools, SaaS platforms, and mobile app backends across multiple projects. Integrated AI automation features (e.g., interview workflows, analytics) into live systems. Managed project tasks, requirements, and sprint deliveries within a 12-developer team. Developed and optimized scalable backend APIs and responsive frontend modules.",
+    techStack: ["React Native", "DevOps", "SEO", "Analytics"],
+  },
+  {
+    id: 6,
     role: "Freelance Developer",
     company: "Self-Employed",
-    timeline: "APR 2025 — Present",
+    timeline: "APR 2025 — Nov 2025",
     description:
       "Building MVPs for startups, automating CI/CD pipelines, and developing cross-platform apps with React Native. SEO optimization and Google Analytics management for client projects.",
     techStack: ["React Native", "DevOps", "SEO", "Analytics"],
@@ -27,16 +36,16 @@ const experiences = [
     company: "Cloud Ingenious",
     timeline: "JUL 2024 — AUG 2024",
     description:
-      "Designed and developed complete website using Wix Studio with full responsiveness, SEO, accessibility, and performance optimization.",
+      "Converted Figma designs into a fully responsive website using React and Next.js, collaborating with a 4-person team for end-to-end development and deployment. Maintained SEO scores at 90-100% through optimised meta tags and structured data, while ensuring 98%+ site availability across 100+ countries via AWS S3 and CDN.",
     techStack: ["Wix Studio", "SEO", "Analytics"],
   },
   {
     id: 4,
-    role: "Frontend Lead",
+    role: "React Developer",
     company: "StarOps Technologies",
     timeline: "NOV 2023 — MAR 2025",
     description:
-      "Led frontend architecture for admin dashboards and user portals. Improved onboarding rates by 30%. Built scalable dashboard for ₹50L/month loan business.",
+      "Shipped EdTech, admin, and loan processing dashboards with React and Node.js integrations, driving ₹30L+ monthly transactions and 3,000+ partner onboardings in 4 months. Accelerated development velocity by 30% by architecting a reusable UI library and Figma-integrated design system. Automated loan eligibility checks by developing frontend components that integrated with bank APIs for real-time validation and processing. Boosted application performance by 40% through code splitting, lazy loading, and S3-optimised image delivery, achieving 15% faster load times. Collaborated with cross-functional teams (sales, finance, founders) to launch iterative features for team's use case.",
     techStack: ["React", "REST APIs", "Admin Panels"],
   },
   {
@@ -45,7 +54,7 @@ const experiences = [
     company: "Gateway Car Rental",
     timeline: "JAN 2023 — AUG 2023",
     description:
-      "Developed complete frontend including booking flow, contact system, and admin dashboard. Achieved 32% traffic increase and 25% performance boost.",
+      "Increased booking engagement by 40% by building a React-based booking site from scratch, incorporating dynamic UI elements and user flows. Streamlined rental pricing and availability calculations with custom React logic and calculators. Transitioned from initial design tasks to leading frontend development, delivering UI components that supported scalable rental management.",
     techStack: ["React", "JavaScript", "UI Optimization"],
   },
 ];
