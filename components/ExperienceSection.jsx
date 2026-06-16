@@ -6,6 +6,35 @@ import SectionHeader from "./shared/SectionHeader";
 
 const experiences = [
   {
+    id: 0,
+    role: "Founder ",
+    company: "Plavist & Furviou IT Studio",
+    timeline: "MA 2026 — Present",
+    description:
+      "Plavist is an AI recruitment platform, where my main goal is to create hiring in such a space where it is transparent for the candidate and recruiter, and recruiter can get good candidates and candidates can get good jobs and also feedback to grow. While Furviou is an IT studio where we help founders and early-stage startups to work on their product and work on MVP, and we also help companies to build internal tools or SaaS platform for their use case.",
+    techStack: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "AWS",
+      "Docker",
+      "Git",
+      "GitHub",
+      "GitLab",
+      "VS Code",
+      "Postman",
+      "Swagger",
+      "Linux",
+      "Figma",
+      "Slack",
+      "Teams",
+    ],
+  },
+  {
     id: 1,
     role: "Full-Stack Developer",
     company: "Varaniti Consultancy Services (Volvrit)",
