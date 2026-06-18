@@ -13,7 +13,16 @@ export async function GET() {
     return NextResponse.json({ blogs });
   } catch (error) {
     console.error("Failed to fetch blogs:", error);
-    return NextResponse.json({ error: "Failed to fetch blogs" }, { status: 500 });
+    const message = error instanceof Error ? error.message : "Failed to fetch blogs";
+    const isConfigError = message.includes("MONGODB_URI");
+    return NextResponse.json(
+      {
+        error: isConfigError
+          ? "Database is not configured. Set MONGODB_URI in Vercel environment variables."
+          : "Failed to connect to database. Check MONGODB_URI and MongoDB Atlas network access (allow 0.0.0.0/0).",
+      },
+      { status: 500 }
+    );
   }
 }
 
