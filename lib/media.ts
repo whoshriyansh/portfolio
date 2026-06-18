@@ -71,11 +71,10 @@ export function getMediaInfo(url: string): GalleryMedia {
     };
   }
 
-  if (/\.(mp4|webm|mov|m4v|ogg)(\?|#|$)/i.test(normalized)) {
-    return { url: normalized, caption, type: "video" };
-  }
-
-  if (/cloudinary\.com.+\/video\/upload\//i.test(normalized)) {
+  if (
+    /cloudinary\.com.+\/video\/upload\//i.test(normalized) ||
+    /\.(mp4|webm|mov|m4v|ogg)(\?|#|$)/i.test(normalized)
+  ) {
     return { url: normalized, caption, type: "video" };
   }
 
@@ -100,8 +99,8 @@ export function normalizeGalleryMedia(
       const media: GalleryMedia = {
         url: detected.url,
         caption: String(item.caption || "").trim(),
-        type: (item.type as MediaType) || detected.type,
-        embedUrl: item.embedUrl || detected.embedUrl,
+        type: detected.type,
+        embedUrl: detected.embedUrl,
       };
       return media;
     })

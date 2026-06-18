@@ -40,15 +40,31 @@ export default function GalleryMediaPreview({
   if (media.type === "video") {
     return (
       <figure className={className}>
-        <video
-          src={media.url}
-          controls
-          playsInline
-          preload="metadata"
-          className="w-full rounded-lg border border-white/5 bg-black"
-        >
-          Your browser does not support video playback.
-        </video>
+        {hasError ? (
+          <div className="flex min-h-48 w-full flex-col items-center justify-center rounded-lg border border-dashed border-white/10 bg-surface/40 px-6 py-8 text-center">
+            <p className="text-sm text-soft_gray/70">Video could not be loaded</p>
+            <p className="mt-2 text-[11px] text-dark_gray break-all">{media.url}</p>
+            <a
+              href={media.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 text-xs text-orange hover:text-orange-light transition-colors"
+            >
+              Open video in new tab
+            </a>
+          </div>
+        ) : (
+          <video
+            src={media.url}
+            controls
+            playsInline
+            preload="metadata"
+            onError={() => setHasError(true)}
+            className="w-full rounded-lg border border-white/5 bg-black"
+          >
+            Your browser does not support video playback.
+          </video>
+        )}
         {showCaption && media.caption && (
           <figcaption className="mt-2.5 text-center text-[11px] leading-relaxed tracking-wide text-dark_gray/90 uppercase">
             {media.caption}
