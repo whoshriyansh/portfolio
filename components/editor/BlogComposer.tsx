@@ -21,6 +21,8 @@ import { FixedToolbar } from "@/components/ui/fixed-toolbar";
 import { H1Element, H2Element, H3Element } from "@/components/ui/heading-node";
 import { MarkToolbarButton } from "@/components/ui/mark-toolbar-button";
 import { ToolbarButton } from "@/components/ui/toolbar";
+import BlogGalleryEditor from "@/components/editor/BlogGalleryEditor";
+import type { GalleryImage } from "@/components/BlogGallery";
 
 const initialValue: Value = [
   {
@@ -33,7 +35,7 @@ export default function BlogComposer() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [excerpt, setExcerpt] = useState("");
-  const [coverImageUrl, setCoverImageUrl] = useState("");
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
   const [seoKeywords, setSeoKeywords] = useState("");
   const [isPublishing, setIsPublishing] = useState(false);
   const [error, setError] = useState("");
@@ -67,7 +69,7 @@ export default function BlogComposer() {
         body: JSON.stringify({
           title,
           excerpt,
-          coverImageUrl,
+          galleryImages,
           seoKeywords,
           contentJson,
         }),
@@ -112,20 +114,11 @@ export default function BlogComposer() {
       </div>
 
       <div className="max-w-3xl mx-auto px-6 py-10">
-        <div className="grid gap-4 mb-8">
-          <label className="flex flex-col gap-2">
-            <span className="text-xs uppercase tracking-wider text-soft_gray/60">
-              Cover image URL
-            </span>
-            <input
-              type="url"
-              value={coverImageUrl}
-              onChange={(event) => setCoverImageUrl(event.target.value)}
-              placeholder="https://example.com/cover.jpg"
-              className="w-full bg-surface border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-soft_gray/40 outline-none focus:border-orange/50"
-            />
-          </label>
+        <div className="mb-8">
+          <BlogGalleryEditor images={galleryImages} onChange={setGalleryImages} />
+        </div>
 
+        <div className="grid gap-4 mb-8">
           <label className="flex flex-col gap-2">
             <span className="text-xs uppercase tracking-wider text-soft_gray/60">
               SEO keywords (comma separated)

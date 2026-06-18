@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (pathname.startsWith("/api/blogs")) {
+  if (pathname.startsWith("/api/blogs") || pathname.startsWith("/api/upload")) {
     const method = request.method;
     if (method === "POST" || method === "DELETE" || method === "GET") {
       if (!isAuthenticated) {
@@ -25,5 +25,10 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/server/compose/:path*", "/api/blogs", "/api/blogs/:path*"],
+  matcher: [
+    "/server/compose/:path*",
+    "/api/blogs",
+    "/api/blogs/:path*",
+    "/api/upload/image",
+  ],
 };

@@ -5,6 +5,7 @@ export interface IBlog extends Document {
   slug: string;
   excerpt: string;
   coverImageUrl: string;
+  galleryImages: { url: string; caption: string }[];
   contentJson: unknown[];
   readingTime: number;
   publishedAt: Date;
@@ -19,6 +20,15 @@ const BlogSchema = new Schema<IBlog>(
     slug: { type: String, required: true, unique: true, index: true },
     excerpt: { type: String, required: true },
     coverImageUrl: { type: String, default: "" },
+    galleryImages: {
+      type: [
+        {
+          url: { type: String, required: true },
+          caption: { type: String, default: "" },
+        },
+      ],
+      default: [],
+    },
     contentJson: { type: Array, required: true },
     readingTime: { type: Number, required: true },
     publishedAt: { type: Date, required: true },

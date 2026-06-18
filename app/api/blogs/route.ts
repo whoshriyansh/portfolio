@@ -37,6 +37,14 @@ export async function POST(request: Request) {
     const title = String(body.title || "").trim();
     const excerpt = String(body.excerpt || "").trim();
     const coverImageUrl = String(body.coverImageUrl || "").trim();
+    const galleryImages = Array.isArray(body.galleryImages)
+      ? body.galleryImages
+          .map((image: { url?: unknown; caption?: unknown }) => ({
+            url: String(image.url || "").trim(),
+            caption: String(image.caption || "").trim(),
+          }))
+          .filter((image: { url: string }) => image.url)
+      : [];
     const contentJson = Array.isArray(body.contentJson) ? body.contentJson : [];
     const seoKeywords = Array.isArray(body.seoKeywords)
       ? body.seoKeywords.map((keyword: unknown) => String(keyword).trim()).filter(Boolean)
@@ -56,6 +64,7 @@ export async function POST(request: Request) {
       title,
       excerpt,
       coverImageUrl,
+      galleryImages,
       contentJson,
       seoKeywords,
     });

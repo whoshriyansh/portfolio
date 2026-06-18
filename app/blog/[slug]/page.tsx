@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BlogRenderer from "@/components/BlogRenderer";
+import BlogGallery from "@/components/BlogGallery";
 import { getBlogBySlug } from "@/lib/blog";
 import { AUTHOR, SITE_URL, buildBlogPostingJsonLd } from "@/lib/seo";
 
@@ -75,6 +76,12 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const blogPostingJsonLd = buildBlogPostingJsonLd(post);
+  const galleryImages =
+    post.galleryImages.length > 0
+      ? post.galleryImages
+      : post.coverImageUrl
+        ? [{ url: post.coverImageUrl, caption: "" }]
+        : [];
 
   return (
     <div className="min-h-screen bg-black no-custom-cursor">
@@ -125,15 +132,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             </p>
           </header>
 
-          {post.coverImageUrl && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={post.coverImageUrl}
-              alt={post.title}
-              className="w-full rounded-lg mb-12 object-cover max-h-[480px]"
-              itemProp="image"
-            />
-          )}
+          <BlogGallery images={galleryImages} />
 
           <div itemProp="articleBody">
             <BlogRenderer content={post.contentJson} />

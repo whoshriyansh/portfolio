@@ -4,12 +4,18 @@ import { slugify } from "@/lib/slug";
 import { calculateReadingTime } from "@/lib/reading-time";
 import type { Types } from "mongoose";
 
+export type GalleryImage = {
+  url: string;
+  caption: string;
+};
+
 export type BlogPost = {
   id: string;
   title: string;
   slug: string;
   excerpt: string;
   coverImageUrl: string;
+  galleryImages: GalleryImage[];
   contentJson: Record<string, unknown>[];
   readingTime: number;
   publishedAt: Date;
@@ -24,6 +30,7 @@ type LeanBlog = {
   slug: string;
   excerpt: string;
   coverImageUrl: string;
+  galleryImages?: GalleryImage[];
   contentJson: Record<string, unknown>[];
   readingTime: number;
   publishedAt: Date;
@@ -32,13 +39,27 @@ type LeanBlog = {
   updatedAt: Date;
 };
 
+function normalizeGalleryImages(images?: GalleryImage[]): GalleryImage[] {
+  if (!Array.isArray(images)) return [];
+
+  return images
+    .map((image) => ({
+      url: String(image.url || "").trim(),
+      caption: String(image.caption || "").trim(),
+    }))
+    .filter((image) => image.url);
+}
+
 function toBlogPost(doc: LeanBlog): BlogPost {
+  const galleryImages = normalizeGalleryImages(doc.galleryImages);
+
   return {
     id: doc._id.toString(),
     title: doc.title,
     slug: doc.slug,
     excerpt: doc.excerpt,
-    coverImageUrl: doc.coverImageUrl,
+    coverImageUrl: doc.coverImageUrl || galleryImages[0]?.url || "",
+    galleryImages,
     contentJson: doc.contentJson,
     readingTime: doc.readingTime,
     publishedAt: doc.publishedAt,
@@ -84,7 +105,8 @@ async function generateUniqueSlug(title: string): Promise<string> {
 export type CreateBlogInput = {
   title: string;
   excerpt: string;
-  coverImageUrl: string;
+  coverImageUrl?: string;
+  galleryImages?: GalleryImage[];
   contentJson: Record<string, unknown>[];
   seoKeywords: string[];
 };
@@ -93,12 +115,16 @@ export async function createBlog(data: CreateBlogInput): Promise<BlogPost> {
   await connectDB();
   const slug = await generateUniqueSlug(data.title);
   const readingTime = calculateReadingTime(data.contentJson);
+  const galleryImages = normalizeGalleryImages(data.galleryImages);
+  const coverImageUrl =
+    galleryImages[0]?.url || String(data.coverImageUrl || "").trim();
 
   const blog = await Blog.create({
     title: data.title,
     slug,
     excerpt: data.excerpt,
-    coverImageUrl: data.coverImageUrl,
+    coverImageUrl,
+    galleryImages,
     contentJson: data.contentJson,
     readingTime,
     publishedAt: new Date(),
