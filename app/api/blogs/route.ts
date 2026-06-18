@@ -39,11 +39,13 @@ export async function POST(request: Request) {
     const coverImageUrl = String(body.coverImageUrl || "").trim();
     const galleryImages = Array.isArray(body.galleryImages)
       ? body.galleryImages
-          .map((image: { url?: unknown; caption?: unknown }) => ({
-            url: String(image.url || "").trim(),
-            caption: String(image.caption || "").trim(),
+          .map((item: { url?: unknown; caption?: unknown; type?: unknown; embedUrl?: unknown }) => ({
+            url: String(item.url || "").trim(),
+            caption: String(item.caption || "").trim(),
+            type: String(item.type || "").trim(),
+            embedUrl: String(item.embedUrl || "").trim(),
           }))
-          .filter((image: { url: string }) => image.url)
+          .filter((item: { url: string }) => item.url)
       : [];
     const contentJson = Array.isArray(body.contentJson) ? body.contentJson : [];
     const seoKeywords = Array.isArray(body.seoKeywords)

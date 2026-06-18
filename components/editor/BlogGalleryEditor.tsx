@@ -2,11 +2,16 @@
 
 import { useRef, useState } from "react";
 import { Image as ImageIcon, Link, Trash2, Upload } from "react-feather";
-import type { GalleryImage } from "@/components/BlogGallery";
+import GalleryMediaPreview from "@/components/GalleryMediaPreview";
+import {
+  getMediaInfo,
+  withCaption,
+  type GalleryMedia,
+} from "@/lib/media";
 
 type BlogGalleryEditorProps = {
-  images: GalleryImage[];
-  onChange: (images: GalleryImage[]) => void;
+  images: GalleryMedia[];
+  onChange: (images: GalleryMedia[]) => void;
 };
 
 export default function BlogGalleryEditor({ images, onChange }: BlogGalleryEditorProps) {
@@ -17,7 +22,7 @@ export default function BlogGalleryEditor({ images, onChange }: BlogGalleryEdito
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState("");
 
-  function updateImage(index: number, patch: Partial<GalleryImage>) {
+  function updateImage(index: number, patch: Partial<GalleryMedia>) {
     onChange(images.map((image, i) => (i === index ? { ...image, ...patch } : image)));
   }
 
@@ -25,26 +30,24 @@ export default function BlogGalleryEditor({ images, onChange }: BlogGalleryEdito
     onChange(images.filter((_, i) => i !== index));
   }
 
-  function addImage(url: string, caption: string) {
+  function addMediaFromUrl(url: string, caption: string) {
     const trimmedUrl = url.trim();
     if (!trimmedUrl) {
-      setError("Image URL is required");
+      setError("Media URL is required");
       return;
     }
 
     try {
-      new URL(trimmedUrl);
+      const media = withCaption(getMediaInfo(trimmedUrl), caption);
+      onChange([...images, media]);
+      setError("");
     } catch {
-      setError("Please enter a valid image URL");
-      return;
+      setError("Please enter a valid media URL");
     }
-
-    onChange([...images, { url: trimmedUrl, caption: caption.trim() }]);
-    setError("");
   }
 
   function handleAddUrl() {
-    addImage(urlInput, urlCaption);
+    addMediaFromUrl(urlInput, urlCaption);
     setUrlInput("");
     setUrlCaption("");
   }
@@ -75,10 +78,16 @@ export default function BlogGalleryEditor({ images, onChange }: BlogGalleryEdito
         return;
       }
 
-      onChange([...images, { url: data.url, caption: uploadCaption.trim() }]);
+      const media: GalleryMedia = {
+        url: data.url,
+        caption: uploadCaption.trim(),
+        type: data.type === "video" ? "video" : "image",
+      };
+
+      onChange([...images, media]);
       setUploadCaption("");
     } catch {
-      setError("Upload failed. Try again or paste an image URL.");
+      setError("Upload failed. Try again or paste a media URL.");
     } finally {
       setIsUploading(false);
     }
@@ -91,10 +100,10 @@ export default function BlogGalleryEditor({ images, onChange }: BlogGalleryEdito
           <ImageIcon size={16} />
         </div>
         <div>
-          <h3 className="font-display font-semibold text-white text-sm">Essay images</h3>
+          <h3 className="font-display font-semibold text-white text-sm">Essay media</h3>
           <p className="text-xs text-soft_gray/50 mt-1 leading-relaxed">
-            Add photos that appear at the top of your essay. Upload to Cloudinary or paste a URL.
-            Captions show below each image and are used as alt text.
+            Add photos or videos at the top of your essay. Upload files, paste a direct image/video
+            URL, or use a YouTube/Vimeo link. Click &quot;Add from URL&quot; after pasting.
           </p>
         </div>
       </div>
@@ -103,7 +112,7 @@ export default function BlogGalleryEditor({ images, onChange }: BlogGalleryEdito
         <div className="space-y-3 rounded-lg border border-white/10 bg-black/30 p-4">
           <p className="text-xs uppercase tracking-wider text-soft_gray/60 flex items-center gap-2">
             <Upload size={12} />
-            Upload image
+            Upload image or video
           </p>
           <input
             type="text"
@@ -115,7 +124,7 @@ export default function BlogGalleryEditor({ images, onChange }: BlogGalleryEdito
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+            accept="image/jpeg,image/png,image/webp,image/gif,image/avif,video/mp4,video/webm,video/quicktime,video/ogg"
             onChange={handleFileSelect}
             className="hidden"
           />
@@ -132,14 +141,20 @@ export default function BlogGalleryEditor({ images, onChange }: BlogGalleryEdito
         <div className="space-y-3 rounded-lg border border-white/10 bg-black/30 p-4">
           <p className="text-xs uppercase tracking-wider text-soft_gray/60 flex items-center gap-2">
             <Link size={12} />
-            Paste image URL
+            Paste media URL
           </p>
           <input
-            type="url"
+            type="text"
             value={urlInput}
             onChange={(event) => setUrlInput(event.target.value)}
-            placeholder="https://example.com/photo.jpg"
+            placeholder="https://youtube.com/watch?v=... or image URL"
             className="w-full bg-surface border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder:text-soft_gray/40 outline-none focus:border-orange/50"
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                handleAddUrl();
+              }
+            }}
           />
           <input
             type="text"
@@ -147,6 +162,12 @@ export default function BlogGalleryEditor({ images, onChange }: BlogGalleryEdito
             onChange={(event) => setUrlCaption(event.target.value)}
             placeholder="Caption (optional)"
             className="w-full bg-surface border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder:text-soft_gray/40 outline-none focus:border-orange/50"
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                handleAddUrl();
+              }
+            }}
           />
           <button
             type="button"
@@ -161,27 +182,22 @@ export default function BlogGalleryEditor({ images, onChange }: BlogGalleryEdito
       {error && <p className="text-sm text-red-400">{error}</p>}
 
       {images.length > 0 && (
-        <div className="space-y-4">
-          {images.map((image, index) => (
+        <div className="space-y-6">
+          {images.map((media, index) => (
             <div
-              key={`${image.url}-${index}`}
-              className="flex flex-col sm:flex-row gap-4 rounded-lg border border-white/10 bg-black/20 p-4"
+              key={`${media.url}-${index}`}
+              className="space-y-4 rounded-lg border border-white/10 bg-black/20 p-4"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={image.url}
-                alt={image.caption || "Preview"}
-                className="w-full sm:w-32 h-32 object-cover rounded-lg border border-white/5 shrink-0"
-              />
-              <div className="flex-1 space-y-3">
+              <GalleryMediaPreview media={media} showCaption={false} />
+              <div className="space-y-3">
                 <input
                   type="text"
-                  value={image.caption}
+                  value={media.caption}
                   onChange={(event) => updateImage(index, { caption: event.target.value })}
-                  placeholder="Caption for this image"
+                  placeholder="Caption for this media"
                   className="w-full bg-surface border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder:text-soft_gray/40 outline-none focus:border-orange/50"
                 />
-                <p className="text-[11px] text-dark_gray break-all">{image.url}</p>
+                <p className="text-[11px] text-dark_gray break-all">{media.url}</p>
                 <button
                   type="button"
                   onClick={() => removeImage(index)}

@@ -22,7 +22,7 @@ import { H1Element, H2Element, H3Element } from "@/components/ui/heading-node";
 import { MarkToolbarButton } from "@/components/ui/mark-toolbar-button";
 import { ToolbarButton } from "@/components/ui/toolbar";
 import BlogGalleryEditor from "@/components/editor/BlogGalleryEditor";
-import type { GalleryImage } from "@/components/BlogGallery";
+import type { GalleryMedia } from "@/lib/media";
 
 const initialValue: Value = [
   {
@@ -35,7 +35,7 @@ export default function BlogComposer() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [excerpt, setExcerpt] = useState("");
-  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+  const [galleryImages, setGalleryImages] = useState<GalleryMedia[]>([]);
   const [seoKeywords, setSeoKeywords] = useState("");
   const [isPublishing, setIsPublishing] = useState(false);
   const [error, setError] = useState("");

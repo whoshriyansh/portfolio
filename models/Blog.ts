@@ -5,7 +5,7 @@ export interface IBlog extends Document {
   slug: string;
   excerpt: string;
   coverImageUrl: string;
-  galleryImages: { url: string; caption: string }[];
+  galleryImages: { url: string; caption: string; type?: string; embedUrl?: string }[];
   contentJson: unknown[];
   readingTime: number;
   publishedAt: Date;
@@ -25,6 +25,8 @@ const BlogSchema = new Schema<IBlog>(
         {
           url: { type: String, required: true },
           caption: { type: String, default: "" },
+          type: { type: String, enum: ["image", "video", "embed"], default: "image" },
+          embedUrl: { type: String, default: "" },
         },
       ],
       default: [],

@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     post.galleryImages.length > 0
       ? post.galleryImages
       : post.coverImageUrl
-        ? [{ url: post.coverImageUrl, caption: "" }]
+        ? [{ url: post.coverImageUrl, caption: "", type: "image" as const }]
         : [];
 
   return (

@@ -1,14 +1,23 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { isCloudinaryConfigured, uploadImageToCloudinary } from "@/lib/cloudinary";
+import { isCloudinaryConfigured, uploadMediaToCloudinary } from "@/lib/cloudinary";
 
-const MAX_FILE_SIZE = 10 * 1024 * 1024;
-const ALLOWED_TYPES = new Set([
+const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
+const MAX_VIDEO_SIZE = 50 * 1024 * 1024;
+
+const IMAGE_TYPES = new Set([
   "image/jpeg",
   "image/png",
   "image/webp",
   "image/gif",
   "image/avif",
+]);
+
+const VIDEO_TYPES = new Set([
+  "video/mp4",
+  "video/webm",
+  "video/quicktime",
+  "video/ogg",
 ]);
 
 export async function POST(request: Request) {
@@ -19,7 +28,10 @@ export async function POST(request: Request) {
 
   if (!isCloudinaryConfigured()) {
     return NextResponse.json(
-      { error: "Cloudinary is not configured. Add Cloudinary env vars or paste an image URL instead." },
+      {
+        error:
+          "Cloudinary is not configured. Add Cloudinary env vars or paste a media URL instead.",
+      },
       { status: 503 }
     );
   }
@@ -29,24 +41,34 @@ export async function POST(request: Request) {
     const file = formData.get("file");
 
     if (!file || !(file instanceof File)) {
-      return NextResponse.json({ error: "No image file provided" }, { status: 400 });
+      return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
-    if (!ALLOWED_TYPES.has(file.type)) {
+    const isImage = IMAGE_TYPES.has(file.type);
+    const isVideo = VIDEO_TYPES.has(file.type);
+
+    if (!isImage && !isVideo) {
       return NextResponse.json(
-        { error: "Unsupported file type. Use JPEG, PNG, WebP, GIF, or AVIF." },
+        {
+          error:
+            "Unsupported file type. Use JPEG, PNG, WebP, GIF, AVIF, MP4, WebM, or MOV.",
+        },
         { status: 400 }
       );
     }
 
-    if (file.size > MAX_FILE_SIZE) {
-      return NextResponse.json({ error: "Image must be 10 MB or smaller." }, { status: 400 });
+    const maxSize = isVideo ? MAX_VIDEO_SIZE : MAX_IMAGE_SIZE;
+    if (file.size > maxSize) {
+      return NextResponse.json(
+        { error: isVideo ? "Video must be 50 MB or smaller." : "Image must be 10 MB or smaller." },
+        { status: 400 }
+      );
     }
 
-    const url = await uploadImageToCloudinary(file);
-    return NextResponse.json({ url });
+    const url = await uploadMediaToCloudinary(file, isVideo ? "video" : "image");
+    return NextResponse.json({ url, type: isVideo ? "video" : "image" });
   } catch (error) {
-    console.error("Image upload failed:", error);
-    return NextResponse.json({ error: "Failed to upload image" }, { status: 500 });
+    console.error("Media upload failed:", error);
+    return NextResponse.json({ error: "Failed to upload file" }, { status: 500 });
   }
 }

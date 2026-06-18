@@ -2,12 +2,13 @@ import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
 import { slugify } from "@/lib/slug";
 import { calculateReadingTime } from "@/lib/reading-time";
+import {
+  normalizeGalleryMedia,
+  type GalleryMedia,
+} from "@/lib/media";
 import type { Types } from "mongoose";
 
-export type GalleryImage = {
-  url: string;
-  caption: string;
-};
+export type { GalleryMedia };
 
 export type BlogPost = {
   id: string;
@@ -15,7 +16,7 @@ export type BlogPost = {
   slug: string;
   excerpt: string;
   coverImageUrl: string;
-  galleryImages: GalleryImage[];
+  galleryImages: GalleryMedia[];
   contentJson: Record<string, unknown>[];
   readingTime: number;
   publishedAt: Date;
@@ -30,7 +31,7 @@ type LeanBlog = {
   slug: string;
   excerpt: string;
   coverImageUrl: string;
-  galleryImages?: GalleryImage[];
+  galleryImages?: GalleryMedia[];
   contentJson: Record<string, unknown>[];
   readingTime: number;
   publishedAt: Date;
@@ -39,26 +40,19 @@ type LeanBlog = {
   updatedAt: Date;
 };
 
-function normalizeGalleryImages(images?: GalleryImage[]): GalleryImage[] {
-  if (!Array.isArray(images)) return [];
-
-  return images
-    .map((image) => ({
-      url: String(image.url || "").trim(),
-      caption: String(image.caption || "").trim(),
-    }))
-    .filter((image) => image.url);
-}
-
 function toBlogPost(doc: LeanBlog): BlogPost {
-  const galleryImages = normalizeGalleryImages(doc.galleryImages);
+  const galleryImages = normalizeGalleryMedia(doc.galleryImages);
 
   return {
     id: doc._id.toString(),
     title: doc.title,
     slug: doc.slug,
     excerpt: doc.excerpt,
-    coverImageUrl: doc.coverImageUrl || galleryImages[0]?.url || "",
+    coverImageUrl:
+      galleryImages.find((item) => item.type === "image")?.url ||
+      doc.coverImageUrl ||
+      galleryImages[0]?.url ||
+      "",
     galleryImages,
     contentJson: doc.contentJson,
     readingTime: doc.readingTime,
@@ -106,7 +100,7 @@ export type CreateBlogInput = {
   title: string;
   excerpt: string;
   coverImageUrl?: string;
-  galleryImages?: GalleryImage[];
+  galleryImages?: GalleryMedia[];
   contentJson: Record<string, unknown>[];
   seoKeywords: string[];
 };
@@ -115,9 +109,12 @@ export async function createBlog(data: CreateBlogInput): Promise<BlogPost> {
   await connectDB();
   const slug = await generateUniqueSlug(data.title);
   const readingTime = calculateReadingTime(data.contentJson);
-  const galleryImages = normalizeGalleryImages(data.galleryImages);
+  const galleryImages = normalizeGalleryMedia(data.galleryImages);
   const coverImageUrl =
-    galleryImages[0]?.url || String(data.coverImageUrl || "").trim();
+    galleryImages.find((item) => item.type === "image")?.url ||
+    String(data.coverImageUrl || "").trim() ||
+    galleryImages[0]?.url ||
+    "";
 
   const blog = await Blog.create({
     title: data.title,
