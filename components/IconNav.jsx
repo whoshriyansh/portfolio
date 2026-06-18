@@ -17,12 +17,12 @@ import {
 
 const navItems = [
   { icon: <Home size={18} />, label: "Home", href: "#home" },
+  { icon: <BookOpen size={18} />, label: "Essays", href: "/blog", isPage: true },
   { icon: <Folder size={18} />, label: "Work", href: "#work" },
   { icon: <Briefcase size={18} />, label: "Experience", href: "#experience" },
   { icon: <Code size={18} />, label: "Skills", href: "#skills" },
   { icon: <Tool size={18} />, label: "Tools", href: "#tools" },
-  { icon: <BookOpen size={18} />, label: "Essays", href: "/blog", isPage: true },
-  { icon: <Mail size={18} />, label: "Contact", href: "#contact" },
+  { icon: <Mail size={18} />, label: "Newsletter", href: "#newsletter" },
 ];
 
 const IconNav = () => {

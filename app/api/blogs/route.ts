@@ -60,6 +60,19 @@ export async function POST(request: Request) {
       seoKeywords,
     });
 
+    void import("@/lib/newsletter")
+      .then(({ notifySubscribersOfNewBlog }) => notifySubscribersOfNewBlog(blog))
+      .then((result) => {
+        if (!result.skipped) {
+          console.info(
+            `Newsletter sent: ${result.sent} delivered, ${result.failed} failed`
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Newsletter notification failed:", error);
+      });
+
     return NextResponse.json({ blog }, { status: 201 });
   } catch (error) {
     console.error("Failed to create blog:", error);

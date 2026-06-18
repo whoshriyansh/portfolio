@@ -2,39 +2,44 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Send, MapPin, Mail, Linkedin, GitHub } from "react-feather";
+import { Mail, MapPin, Linkedin, GitHub } from "react-feather";
 import SectionHeader from "./shared/SectionHeader";
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSending, setIsSending] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [status, setStatus] = useState("idle");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSending(true);
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setStatus("loading");
+    setMessage("");
 
-    // Mailto fallback
-    const subject = encodeURIComponent(
-      `Portfolio Contact from ${formData.name}`
-    );
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    );
-    window.open(
-      `mailto:whoshriyansh@gmail.com?subject=${subject}&body=${body}`
-    );
+    try {
+      const response = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    setTimeout(() => {
-      setIsSending(false);
-      setFormData({ name: "", email: "", message: "" });
-    }, 1000);
-  };
+      const data = await response.json();
+
+      if (!response.ok) {
+        setStatus("error");
+        setMessage(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setStatus("success");
+      setMessage(data.message);
+      setFormData({ name: "", email: "" });
+    } catch {
+      setStatus("error");
+      setMessage("Network error. Please try again.");
+    }
+  }
 
   const contactLinks = [
     {
@@ -60,16 +65,15 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="relative py-32 px-6" ref={ref}>
+    <section id="newsletter" className="relative py-32 px-6" ref={ref}>
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          label="Get in Touch"
-          title="Contact"
-          description="Have a project in mind or want to collaborate? Let's talk."
+          label="Newsletter"
+          title="Stay in the loop"
+          description="Subscribe for new essays on full-stack development, Plavist, and building software."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
-          {/* Contact info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -78,13 +82,13 @@ const ContactSection = () => {
           >
             <div>
               <h3 className="font-display font-bold text-2xl text-white heading-tight mb-4">
-                Let&apos;s build something
-                <span className="text-gradient-orange"> amazing</span> together.
+                Subscribe to my
+                <span className="text-gradient-orange"> newsletter</span>
               </h3>
               <p className="text-soft_gray/50 text-sm leading-relaxed">
-                I&apos;m always open to new opportunities, freelance projects,
-                and interesting collaborations. Drop me a line and I&apos;ll get
-                back to you as soon as possible.
+                Get notified when I publish a new essay. No spam — just
+                thoughtful writing on React, Next.js, startups, and lessons from
+                shipping real products. Unsubscribe anytime.
               </p>
             </div>
 
@@ -111,16 +115,13 @@ const ContactSection = () => {
                       {link.label}
                     </a>
                   ) : (
-                    <span className="text-sm text-soft_gray/70">
-                      {link.label}
-                    </span>
+                    <span className="text-sm text-soft_gray/70">{link.label}</span>
                   )}
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Contact form */}
           <motion.form
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -137,7 +138,8 @@ const ContactSection = () => {
                   setFormData({ ...formData, name: e.target.value })
                 }
                 required
-                className="w-full bg-surface border border-white/10 rounded-xl px-5 py-4 text-sm text-white placeholder:text-soft_gray/30 focus:outline-none focus:border-orange/40 transition-colors duration-300"
+                disabled={status === "loading"}
+                className="w-full bg-surface border border-white/10 rounded-xl px-5 py-4 text-sm text-white placeholder:text-soft_gray/30 focus:outline-none focus:border-orange/40 transition-colors duration-300 disabled:opacity-50"
               />
             </div>
 
@@ -150,34 +152,32 @@ const ContactSection = () => {
                   setFormData({ ...formData, email: e.target.value })
                 }
                 required
-                className="w-full bg-surface border border-white/10 rounded-xl px-5 py-4 text-sm text-white placeholder:text-soft_gray/30 focus:outline-none focus:border-orange/40 transition-colors duration-300"
-              />
-            </div>
-
-            <div className="relative">
-              <textarea
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
-                required
-                rows={5}
-                className="w-full bg-surface border border-white/10 rounded-xl px-5 py-4 text-sm text-white placeholder:text-soft_gray/30 focus:outline-none focus:border-orange/40 transition-colors duration-300 resize-none"
+                disabled={status === "loading"}
+                className="w-full bg-surface border border-white/10 rounded-xl px-5 py-4 text-sm text-white placeholder:text-soft_gray/30 focus:outline-none focus:border-orange/40 transition-colors duration-300 disabled:opacity-50"
               />
             </div>
 
             <motion.button
               type="submit"
-              disabled={isSending}
+              disabled={status === "loading"}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-orange text-white font-display font-semibold text-sm hover:bg-orange-light transition-colors duration-300 disabled:opacity-50"
               data-cursor-hover
             >
-              <Send size={16} />
-              {isSending ? "Sending..." : "Send Message"}
+              <Mail size={16} />
+              {status === "loading" ? "Subscribing..." : "Subscribe"}
             </motion.button>
+
+            {message && (
+              <p
+                className={`text-sm ${
+                  status === "error" ? "text-red-400" : "text-soft_gray/70"
+                }`}
+              >
+                {message}
+              </p>
+            )}
           </motion.form>
         </div>
       </div>
