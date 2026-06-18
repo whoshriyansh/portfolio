@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import PageTransition from "@/components/PageTransition";
 import HeroSection from "@/components/HeroSection";
 import WorkSection from "@/components/WorkSection";
@@ -6,33 +7,37 @@ import SkillsSection from "@/components/SkillsSection";
 import ToolsSection from "@/components/ToolsSection";
 import ContactSection from "@/components/ContactSection";
 import PremiumFooter from "@/components/PremiumFooter";
+import {
+  DEFAULT_DESCRIPTION,
+  SITE_KEYWORDS,
+  SITE_URL,
+  buildPersonJsonLd,
+  buildWebSiteJsonLd,
+} from "@/lib/seo";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://whoshriyansh.netlify.app";
-
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Shriyansh Kr. Lohia",
-  url: SITE_URL,
-  sameAs: [
-    "https://www.linkedin.com/in/whoshriyansh/",
-    "https://x.com/whoshriyansh",
-    "https://github.com/whoshriyansh",
-    "https://medium.com/@whoshriyansh",
-  ],
-  jobTitle: "Full-Stack Developer",
-  worksFor: {
-    "@type": "Organization",
-    name: "Self-Employed",
+export const metadata: Metadata = {
+  title: "Shriyansh Kr. Lohia — Full-Stack Developer & Essayist",
+  description: DEFAULT_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  alternates: {
+    canonical: SITE_URL,
+  },
+  openGraph: {
+    title: "Shriyansh Kr. Lohia — Full-Stack Developer & Essayist",
+    description: DEFAULT_DESCRIPTION,
+    url: SITE_URL,
+    type: "profile",
   },
 };
+
+const homeJsonLd = [buildPersonJsonLd(), buildWebSiteJsonLd()];
 
 export default function HomePage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
       <PageTransition>
         <main className="relative">

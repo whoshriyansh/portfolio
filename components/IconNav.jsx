@@ -12,6 +12,7 @@ import {
   Menu,
   X,
   Tool,
+  BookOpen,
 } from "react-feather";
 
 const navItems = [
@@ -20,6 +21,7 @@ const navItems = [
   { icon: <Briefcase size={18} />, label: "Experience", href: "#experience" },
   { icon: <Code size={18} />, label: "Skills", href: "#skills" },
   { icon: <Tool size={18} />, label: "Tools", href: "#tools" },
+  { icon: <BookOpen size={18} />, label: "Essays", href: "/blog", isPage: true },
   { icon: <Mail size={18} />, label: "Contact", href: "#contact" },
 ];
 
@@ -27,7 +29,12 @@ const IconNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTooltip, setActiveTooltip] = useState(null);
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (e, href, isPage) => {
+    if (isPage) {
+      setIsOpen(false);
+      return;
+    }
+
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
@@ -50,7 +57,7 @@ const IconNav = () => {
             <motion.a
               key={item.label}
               href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
+              onClick={(e) => handleNavClick(e, item.href, item.isPage)}
               className="relative group p-3 text-soft_gray/60 hover:text-orange transition-colors duration-300 rounded-full"
               onMouseEnter={() => setActiveTooltip(i)}
               onMouseLeave={() => setActiveTooltip(null)}
@@ -130,7 +137,7 @@ const IconNav = () => {
               <motion.a
                 key={item.label}
                 href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
+                onClick={(e) => handleNavClick(e, item.href, item.isPage)}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}

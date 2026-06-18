@@ -3,10 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import BlogRenderer from "@/components/BlogRenderer";
 import { getBlogBySlug } from "@/lib/blog";
+import { AUTHOR, SITE_URL, buildBlogPostingJsonLd } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://whoshriyansh.netlify.app";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -20,21 +19,41 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Not Found" };
   }
 
+  const keywords = [
+    ...post.seoKeywords,
+    "Shriyansh Lohia",
+    "Shriyansh Kr. Lohia",
+    "Shriyansh Lohia blog",
+  ];
+
   return {
     title: post.title,
     description: post.excerpt,
-    keywords: post.seoKeywords,
+    keywords,
+    authors: [{ name: AUTHOR.name, url: SITE_URL }],
+    creator: AUTHOR.name,
+    publisher: AUTHOR.name,
     alternates: {
       canonical: `/blog/${post.slug}`,
     },
     openGraph: {
-      title: post.title,
+      title: `${post.title} — ${AUTHOR.shortName}`,
       description: post.excerpt,
       url: `/blog/${post.slug}`,
       type: "article",
       publishedTime: new Date(post.publishedAt).toISOString(),
-      images: post.coverImageUrl ? [{ url: post.coverImageUrl }] : [],
-      authors: ["Shriyansh Kr. Lohia"],
+      modifiedTime: new Date(post.updatedAt).toISOString(),
+      authors: [AUTHOR.name],
+      images: post.coverImageUrl
+        ? [{ url: post.coverImageUrl, alt: post.title }]
+        : [{ url: "/pentagon.png", alt: AUTHOR.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      creator: "@whoshriyansh",
+      images: post.coverImageUrl ? [post.coverImageUrl] : ["/pentagon.png"],
     },
   };
 }
@@ -55,30 +74,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
-  const blogPostingJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    image: post.coverImageUrl || undefined,
-    datePublished: new Date(post.publishedAt).toISOString(),
-    dateModified: new Date(post.updatedAt).toISOString(),
-    author: {
-      "@type": "Person",
-      name: "Shriyansh Kr. Lohia",
-      url: SITE_URL,
-    },
-    keywords: post.seoKeywords.join(", "),
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `${SITE_URL}/blog/${post.slug}`,
-    },
-    publisher: {
-      "@type": "Person",
-      name: "Shriyansh Kr. Lohia",
-      url: SITE_URL,
-    },
-  };
+  const blogPostingJsonLd = buildBlogPostingJsonLd(post);
 
   return (
     <div className="min-h-screen bg-black no-custom-cursor">
@@ -92,22 +88,40 @@ export default async function BlogPostPage({ params }: PageProps) {
           href="/blog"
           className="text-sm text-soft_gray/60 hover:text-orange transition-colors mb-12 inline-block"
         >
-          ← All essays
+          ← Shriyansh Lohia Blog
         </Link>
 
-        <article>
+        <article itemScope itemType="https://schema.org/BlogPosting">
           <header className="mb-10">
             <time
               dateTime={new Date(post.publishedAt).toISOString()}
               className="text-xs text-dark_gray uppercase tracking-wider"
+              itemProp="datePublished"
             >
               {formatDate(post.publishedAt)} · {post.readingTime} min read
             </time>
-            <h1 className="font-display font-bold text-3xl md:text-5xl text-white heading-tight mt-4 leading-tight">
+            <h1
+              className="font-display font-bold text-3xl md:text-5xl text-white heading-tight mt-4 leading-tight"
+              itemProp="headline"
+            >
               {post.title}
             </h1>
-            <p className="text-soft_gray/70 text-base md:text-lg mt-5 leading-relaxed">
+            <p
+              className="text-soft_gray/70 text-base md:text-lg mt-5 leading-relaxed"
+              itemProp="description"
+            >
               {post.excerpt}
+            </p>
+            <p className="text-sm text-soft_gray/50 mt-4">
+              By{" "}
+              <Link
+                href="/"
+                className="text-orange hover:text-orange-light transition-colors"
+                rel="author"
+                itemProp="author"
+              >
+                {AUTHOR.name}
+              </Link>
             </p>
           </header>
 
@@ -117,10 +131,13 @@ export default async function BlogPostPage({ params }: PageProps) {
               src={post.coverImageUrl}
               alt={post.title}
               className="w-full rounded-lg mb-12 object-cover max-h-[480px]"
+              itemProp="image"
             />
           )}
 
-          <BlogRenderer content={post.contentJson} />
+          <div itemProp="articleBody">
+            <BlogRenderer content={post.contentJson} />
+          </div>
         </article>
       </div>
     </div>

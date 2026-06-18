@@ -21,7 +21,7 @@ const PremiumFooter = () => {
               <span className="text-orange">.</span>
             </h3>
             <p className="text-soft_gray/40 text-xs mt-1">
-              Full-Stack Developer
+              Full-Stack Developer · Building Plavist
             </p>
           </motion.div>
 

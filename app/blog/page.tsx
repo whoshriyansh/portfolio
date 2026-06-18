@@ -1,32 +1,40 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPublishedBlogs } from "@/lib/blog";
+import {
+  AUTHOR,
+  BLOG_DESCRIPTION,
+  SITE_KEYWORDS,
+  buildBlogJsonLd,
+} from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://whoshriyansh.netlify.app";
-
 export const metadata: Metadata = {
-  title: "Essays by Shriyansh Lohia",
-  description:
-    "Essays on web development, React, Next.js, and building production-grade software by Shriyansh Kr. Lohia.",
+  title: "Shriyansh Lohia Blog — Essays on Full-Stack Development",
+  description: BLOG_DESCRIPTION,
   keywords: [
-    "Shriyansh Lohia",
-    "Shriyansh Kr. Lohia",
-    "Web Development Essays",
-    "React Blog",
-    "Next.js Articles",
-    "Full-Stack Developer India",
+    ...SITE_KEYWORDS,
+    "Shriyansh Lohia essays",
+    "Shriyansh Kr. Lohia writing",
+    "developer blog India",
+    "React essays",
+    "Next.js articles",
   ],
   alternates: {
     canonical: "/blog",
   },
   openGraph: {
-    title: "Essays by Shriyansh Lohia",
-    description:
-      "Essays on web development, React, Next.js, and building production-grade software.",
+    title: "Shriyansh Lohia Blog — Essays by Shriyansh Kr. Lohia",
+    description: BLOG_DESCRIPTION,
     url: "/blog",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shriyansh Lohia Blog",
+    description: BLOG_DESCRIPTION,
+    creator: "@whoshriyansh",
   },
 };
 
@@ -47,28 +55,7 @@ export default async function BlogIndexPage() {
     posts = [];
   }
 
-  const blogJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    name: "Essays by Shriyansh Kr. Lohia",
-    url: `${SITE_URL}/blog`,
-    author: {
-      "@type": "Person",
-      name: "Shriyansh Kr. Lohia",
-      url: SITE_URL,
-    },
-    blogPost: posts.map((post) => ({
-      "@type": "BlogPosting",
-      headline: post.title,
-      description: post.excerpt,
-      datePublished: new Date(post.publishedAt).toISOString(),
-      url: `${SITE_URL}/blog/${post.slug}`,
-      author: {
-        "@type": "Person",
-        name: "Shriyansh Kr. Lohia",
-      },
-    })),
-  };
+  const blogJsonLd = buildBlogJsonLd(posts);
 
   return (
     <div className="min-h-screen bg-black no-custom-cursor">
@@ -86,14 +73,15 @@ export default async function BlogIndexPage() {
             ← Back to portfolio
           </Link>
           <p className="text-xs text-soft_gray/60 uppercase tracking-[0.3em] mb-4">
-            Essays
+            Shriyansh Lohia Blog
           </p>
           <h1 className="font-display font-bold text-4xl md:text-5xl text-white heading-tight">
-            Thoughts by Shriyansh
+            Essays by {AUTHOR.givenName}
           </h1>
           <p className="text-soft_gray/60 text-sm md:text-base mt-4 leading-relaxed max-w-xl">
-            Long-form essays on building software, shipping products, and lessons
-            learned along the way.
+            Long-form essays by {AUTHOR.name} on full-stack development, building
+            Plavist, React, Next.js, and lessons from shipping production
+            software.
           </p>
         </header>
 
@@ -120,7 +108,7 @@ export default async function BlogIndexPage() {
                     {post.excerpt}
                   </p>
                   <p className="text-xs text-dark_gray mt-3">
-                    {post.readingTime} min read
+                    By {AUTHOR.shortName} · {post.readingTime} min read
                   </p>
                 </Link>
               </article>

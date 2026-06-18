@@ -110,9 +110,12 @@ const HeroSection = () => {
           variants={itemVariants}
           className="text-soft_gray/70 text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-12 font-light"
         >
-          Specializing in MERN Stack, Next.js & React Native.
+          Full-stack developer building{" "}
+          <span className="text-orange/90">Plavist</span>. Specializing in MERN
+          Stack, Next.js &amp; React Native.
           <br className="hidden md:block" />
-          Building scalable, production-grade applications with modern Tools and Architecture.
+          Building scalable, production-grade applications with modern tools and
+          architecture.
         </motion.p>
 
         {/* Social links */}
