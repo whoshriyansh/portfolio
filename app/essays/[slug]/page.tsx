@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import BlogRenderer from "@/components/BlogRenderer";
 import BlogGallery from "@/components/BlogGallery";
+import NewsletterInline from "@/components/NewsletterInline";
 import { getBlogBySlug } from "@/lib/blog";
 import { AUTHOR, SITE_URL, buildBlogPostingJsonLd } from "@/lib/seo";
 
@@ -12,7 +13,9 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogBySlug(slug);
 
@@ -88,7 +91,9 @@ export default async function BlogPostPage({ params }: PageProps) {
       <div className="max-w-3xl mx-auto px-6 py-20 md:py-28">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(blogPostingJsonLd),
+          }}
         />
 
         <Link
@@ -138,6 +143,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             <BlogRenderer content={post.contentJson} />
           </div>
         </article>
+
+        <NewsletterInline interest="both" />
       </div>
     </div>
   );
