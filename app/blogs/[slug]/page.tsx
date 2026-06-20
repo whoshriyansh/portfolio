@@ -38,12 +38,12 @@ export async function generateMetadata({
     creator: AUTHOR.name,
     publisher: AUTHOR.name,
     alternates: {
-      canonical: `/blog/${post.slug}`,
+      canonical: `/blogs/${post.slug}`,
     },
     openGraph: {
       title: `${post.title} — ${AUTHOR.shortName}`,
       description: post.excerpt,
-      url: `/blog/${post.slug}`,
+      url: `/blogs/${post.slug}`,
       type: "article",
       publishedTime: new Date(post.publishedAt).toISOString(),
       modifiedTime: new Date(post.updatedAt).toISOString(),
@@ -97,7 +97,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         />
 
         <Link
-          href="/blog"
+          href="/blogs"
           className="text-sm text-soft_gray/60 hover:text-orange transition-colors mb-12 inline-block"
         >
           ← Shriyansh Lohia Blog
