@@ -115,7 +115,12 @@ function emailLayout({
   `.trim();
 }
 
-export function buildWelcomeEmail(unsubscribeUrl: string, name?: string): string {
+export function buildWelcomeEmail(
+  unsubscribeUrl: string,
+  name?: string,
+  interest: string = "both",
+  finalInterest: string = interest === "both" ? "blogs and essays" : interest,
+): string {
   const greeting = name ? `Hey ${name},` : "Hey there,";
 
   return emailLayout({
@@ -123,8 +128,7 @@ export function buildWelcomeEmail(unsubscribeUrl: string, name?: string): string
     eyebrow: "Newsletter",
     title: "You're on the list.",
     bodyHtml: `
-      <p style="margin: 0 0 16px;">${greeting} thanks for subscribing. You'll get an email whenever I publish a new essay on full-stack development, building Plavist, React, and Next.js.</p>
-      <p style="margin: 0;">No spam — just thoughtful writing when there's something worth sharing.</p>
+      <p style="margin: 0 0 16px;">${greeting} thanks for subscribing. You'll get an email whenever I publish a new ${finalInterest}</p>
     `,
     ctaLabel: "Read the blog",
     ctaUrl: `${SITE_URL}/blog`,
@@ -136,6 +140,8 @@ type NewBlogEmailInput = {
   title: string;
   excerpt: string;
   slug: string;
+  type: "blog" | "essay";
+  interest: string;
   readingTime: number;
   coverImageUrl?: string;
   unsubscribeUrl: string;
@@ -145,6 +151,8 @@ export function buildNewBlogEmail({
   title,
   excerpt,
   slug,
+  interest,
+  type,
   readingTime,
   coverImageUrl,
   unsubscribeUrl,
@@ -159,15 +167,15 @@ export function buildNewBlogEmail({
     : "";
 
   return emailLayout({
-    preheader: `New essay: ${title}`,
-    eyebrow: "New Essay",
+    preheader: `New ${type === "blog" ? "Blog" : "Essay"}: ${title}`,
+    eyebrow: `New ${type === "blog" ? "Blog" : "Essay"}`,
     title,
     bodyHtml: `
       ${coverBlock}
       <p style="margin: 0 0 16px;">${excerpt}</p>
       <p style="margin: 0; font-size: 13px; color: ${COLORS.darkGray};">${readingTime} min read · by ${AUTHOR.shortName}</p>
     `,
-    ctaLabel: "Read the essay",
+    ctaLabel: `Read the ${type === "blog" ? "blog" : "essay"}`,
     ctaUrl: postUrl,
     footerNote: `New from ${AUTHOR.shortName}'s blog`,
     unsubscribeUrl,

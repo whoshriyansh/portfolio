@@ -35,6 +35,7 @@ export default function BlogComposer() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [excerpt, setExcerpt] = useState("");
+  const [type, setType] = useState<"blog" | "essay">("blog");
   const [galleryImages, setGalleryImages] = useState<GalleryMedia[]>([]);
   const [seoKeywords, setSeoKeywords] = useState("");
   const [isPublishing, setIsPublishing] = useState(false);
@@ -69,6 +70,7 @@ export default function BlogComposer() {
         body: JSON.stringify({
           title,
           excerpt,
+          type,
           galleryImages,
           seoKeywords,
           contentJson,
@@ -115,7 +117,10 @@ export default function BlogComposer() {
 
       <div className="max-w-3xl mx-auto px-6 py-10">
         <div className="mb-8">
-          <BlogGalleryEditor images={galleryImages} onChange={setGalleryImages} />
+          <BlogGalleryEditor
+            images={galleryImages}
+            onChange={setGalleryImages}
+          />
         </div>
 
         <div className="grid gap-4 mb-8">
@@ -130,6 +135,29 @@ export default function BlogComposer() {
               placeholder="React, Next.js, Shriyansh Lohia"
               className="w-full bg-surface border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-soft_gray/40 outline-none focus:border-orange/50"
             />
+          </label>
+        </div>
+
+        <div className="grid gap-4 mb-8">
+          <label className="flex flex-col gap-2">
+            <span className="text-xs uppercase tracking-wider text-soft_gray/60">
+              Type of content
+            </span>
+            <select
+              required
+              disabled={isPublishing}
+              value={type}
+              onChange={(event) =>
+                setType(event.target.value as "blog" | "essay")
+              }
+              className="w-full bg-surface border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-soft_gray/40 outline-none focus:border-orange/50"
+            >
+              <option value="" disabled>
+                Select the type
+              </option>
+              <option value="blog">Blog</option>
+              <option value="essay">Essay</option>
+            </select>
           </label>
         </div>
 

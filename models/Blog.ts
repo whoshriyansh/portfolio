@@ -5,9 +5,15 @@ export interface IBlog extends Document {
   slug: string;
   excerpt: string;
   coverImageUrl: string;
-  galleryImages: { url: string; caption: string; type?: string; embedUrl?: string }[];
+  galleryImages: {
+    url: string;
+    caption: string;
+    type?: string;
+    embedUrl?: string;
+  }[];
   contentJson: unknown[];
   readingTime: number;
+  type: "blog" | "essay";
   publishedAt: Date;
   seoKeywords: string[];
   createdAt: Date;
@@ -25,7 +31,11 @@ const BlogSchema = new Schema<IBlog>(
         {
           url: { type: String, required: true },
           caption: { type: String, default: "" },
-          type: { type: String, enum: ["image", "video", "embed"], default: "image" },
+          type: {
+            type: String,
+            enum: ["image", "video", "embed"],
+            default: "image",
+          },
           embedUrl: { type: String, default: "" },
         },
       ],
@@ -33,10 +43,11 @@ const BlogSchema = new Schema<IBlog>(
     },
     contentJson: { type: Array, required: true },
     readingTime: { type: Number, required: true },
+    type: { type: String, enum: ["blog", "essay"], default: "blog" },
     publishedAt: { type: Date, required: true },
     seoKeywords: { type: [String], default: [] },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Blog: Model<IBlog> =

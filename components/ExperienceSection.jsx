@@ -7,9 +7,9 @@ import SectionHeader from "./shared/SectionHeader";
 const experiences = [
   {
     id: 0,
-    role: "Founder ",
-    company: "Plavist & Furviou IT Studio",
-    timeline: "MA 2026 — Present",
+    role: "Founder",
+    company: "Plavist",
+    timeline: "Mar 2026 — Present",
     description:
       "Plavist is an AI recruitment platform, where my main goal is to create hiring in such a space where it is transparent for the candidate and recruiter, and recruiter can get good candidates and candidates can get good jobs and also feedback to grow. While Furviou is an IT studio where we help founders and early-stage startups to work on their product and work on MVP, and we also help companies to build internal tools or SaaS platform for their use case.",
     techStack: [
@@ -79,15 +79,7 @@ const experiences = [
       "Shipped EdTech, admin, and loan processing dashboards with React and Node.js integrations, driving ₹30L+ monthly transactions and 3,000+ partner onboardings in 4 months. Accelerated development velocity by 30% by architecting a reusable UI library and Figma-integrated design system. Automated loan eligibility checks by developing frontend components that integrated with bank APIs for real-time validation and processing. Boosted application performance by 40% through code splitting, lazy loading, and S3-optimised image delivery, achieving 15% faster load times. Collaborated with cross-functional teams (sales, finance, founders) to launch iterative features for team's use case.",
     techStack: ["React", "REST APIs", "Admin Panels"],
   },
-  {
-    id: 5,
-    role: "Frontend Developer",
-    company: "Gateway Car Rental",
-    timeline: "JAN 2023 — AUG 2023",
-    description:
-      "Increased booking engagement by 40% by building a React-based booking site from scratch, incorporating dynamic UI elements and user flows. Streamlined rental pricing and availability calculations with custom React logic and calculators. Transitioned from initial design tasks to leading frontend development, delivering UI components that supported scalable rental management.",
-    techStack: ["React", "JavaScript", "UI Optimization"],
-  },
+  
 ];
 
 const ExperienceItem = ({ experience, index }) => {

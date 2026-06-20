@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GitHub, Linkedin, Mail, ArrowDown } from "react-feather";
+import { GitHub, Linkedin, Mail, ArrowDown, Instagram } from "react-feather";
 
 const HeroSection = () => {
   const containerVariants = {
@@ -111,7 +111,7 @@ const HeroSection = () => {
           className="text-soft_gray/70 text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-12 font-light"
         >
           Full-stack developer building{" "}
-          <span className="text-orange/90">Plavist</span>. Specializing in MERN
+          <a href="https://plavist.com" target="_blank" rel="noopener noreferrer" className="text-orange/90">Plavist</a>. Specializing in MERN
           Stack, Next.js &amp; React Native.
           <br className="hidden md:block" />
           Building scalable, production-grade applications with modern tools and
@@ -125,6 +125,7 @@ const HeroSection = () => {
         >
           {[
             { icon: <Linkedin size={18} />, href: "https://www.linkedin.com/in/whoshriyansh/", label: "LinkedIn" },
+            { icon: <Instagram size={18} />, href: "https://www.instagram.com/whoshriyansh/", label: "Instagram" },
             { icon: <GitHub size={18} />, href: "https://github.com/whoshriyansh", label: "GitHub" },
             { icon: <Mail size={18} />, href: "mailto:whoshriyansh@gmail.com", label: "Email" },
           ].map((social, i) => (

@@ -2,10 +2,7 @@ import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
 import { slugify } from "@/lib/slug";
 import { calculateReadingTime } from "@/lib/reading-time";
-import {
-  normalizeGalleryMedia,
-  type GalleryMedia,
-} from "@/lib/media";
+import { normalizeGalleryMedia, type GalleryMedia } from "@/lib/media";
 import type { Types } from "mongoose";
 
 export type { GalleryMedia };
@@ -15,6 +12,7 @@ export type BlogPost = {
   title: string;
   slug: string;
   excerpt: string;
+  type: "blog" | "essay";
   coverImageUrl: string;
   galleryImages: GalleryMedia[];
   contentJson: Record<string, unknown>[];
@@ -30,6 +28,7 @@ type LeanBlog = {
   title: string;
   slug: string;
   excerpt: string;
+  type: "blog" | "essay";
   coverImageUrl: string;
   galleryImages?: GalleryMedia[];
   contentJson: Record<string, unknown>[];
@@ -48,6 +47,7 @@ function toBlogPost(doc: LeanBlog): BlogPost {
     title: doc.title,
     slug: doc.slug,
     excerpt: doc.excerpt,
+    type: doc.type,
     coverImageUrl:
       galleryImages.find((item) => item.type === "image")?.url ||
       doc.coverImageUrl ||
@@ -65,7 +65,17 @@ function toBlogPost(doc: LeanBlog): BlogPost {
 
 export async function getAllPublishedBlogs(): Promise<BlogPost[]> {
   await connectDB();
-  const blogs = await Blog.find().sort({ publishedAt: -1 }).lean();
+  const blogs = await Blog.find({ type: "blog" })
+    .sort({ publishedAt: -1 })
+    .lean();
+  return blogs.map((blog) => toBlogPost(blog as LeanBlog));
+}
+
+export async function getAllPublishedEssays(): Promise<BlogPost[]> {
+  await connectDB();
+  const blogs = await Blog.find({ type: "essay" })
+    .sort({ publishedAt: -1 })
+    .lean();
   return blogs.map((blog) => toBlogPost(blog as LeanBlog));
 }
 
@@ -103,6 +113,7 @@ export type CreateBlogInput = {
   galleryImages?: GalleryMedia[];
   contentJson: Record<string, unknown>[];
   seoKeywords: string[];
+  type: "blog" | "essay";
 };
 
 export async function createBlog(data: CreateBlogInput): Promise<BlogPost> {
@@ -120,6 +131,7 @@ export async function createBlog(data: CreateBlogInput): Promise<BlogPost> {
     title: data.title,
     slug,
     excerpt: data.excerpt,
+    type: data.type,
     coverImageUrl,
     galleryImages,
     contentJson: data.contentJson,

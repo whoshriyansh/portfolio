@@ -13,10 +13,10 @@ const skills = [
     proficiency: 90,
   },
   {
-    name: "Python",
+    name: "C++",
     category: "Language",
-    icon: "logos:python",
-    proficiency: 60,
+    icon: "logos:c-plusplus",
+    proficiency: 50,
   },
   {
     name: "React",

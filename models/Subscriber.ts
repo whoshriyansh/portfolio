@@ -3,6 +3,7 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 export interface ISubscriber extends Document {
   name: string;
   email: string;
+  interest: "blogs" | "essays" | "both";
   unsubscribeToken: string;
   active: boolean;
   subscribedAt: Date;
@@ -13,12 +14,28 @@ export interface ISubscriber extends Document {
 const SubscriberSchema = new Schema<ISubscriber>(
   {
     name: { type: String, default: "", trim: true },
-    email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-    unsubscribeToken: { type: String, required: true, unique: true, index: true },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    interest: {
+      type: String,
+      enum: ["blogs", "essays", "both"],
+      default: "both",
+    },
+    unsubscribeToken: {
+      type: String,
+      required: true,
+      unique: true,
+      index: true,
+    },
     active: { type: Boolean, default: true },
     subscribedAt: { type: Date, default: Date.now },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Subscriber: Model<ISubscriber> =

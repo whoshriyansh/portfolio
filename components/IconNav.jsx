@@ -13,15 +13,17 @@ import {
   X,
   Tool,
   BookOpen,
+  Book,
 } from "react-feather";
 
 const navItems = [
   { icon: <Home size={18} />, label: "Home", href: "#home" },
-  { icon: <BookOpen size={18} />, label: "Essays", href: "/blog", isPage: true },
+  { icon: <BookOpen size={18} />, label: "Essays", href: "/essays", isPage: true },
+  { icon: <Book size={18} />, label: "Blog", href: "/blogs", isPage: true },
   { icon: <Folder size={18} />, label: "Work", href: "#work" },
   { icon: <Briefcase size={18} />, label: "Experience", href: "#experience" },
-  { icon: <Code size={18} />, label: "Skills", href: "#skills" },
-  { icon: <Tool size={18} />, label: "Tools", href: "#tools" },
+  // { icon: <Code size={18} />, label: "Skills", href: "#skills" },
+  // { icon: <Tool size={18} />, label: "Tools", href: "#tools" },
   { icon: <Mail size={18} />, label: "Newsletter", href: "#newsletter" },
 ];
 
@@ -82,10 +84,10 @@ const IconNav = () => {
           ))}
 
           {/* Separator line */}
-          <div className="w-5 h-px bg-white/10 my-1" />
+          {/* <div className="w-5 h-px bg-white/10 my-1" /> */}
 
           {/* Resume download */}
-          <motion.a
+          {/* <motion.a
             href="/resume.pdf"
             download="Shriyansh_Lohia.pdf"
             className="relative group p-3 text-soft_gray/60 hover:text-orange transition-colors duration-300 rounded-full"
@@ -108,7 +110,7 @@ const IconNav = () => {
                 </motion.span>
               )}
             </AnimatePresence>
-          </motion.a>
+          </motion.a> */}
         </div>
       </motion.nav>
 

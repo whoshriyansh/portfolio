@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllPublishedBlogs } from "@/lib/blog";
+import { getAllPublishedBlogs, getAllPublishedEssays } from "@/lib/blog";
 import {
   AUTHOR,
   BLOG_DESCRIPTION,
@@ -11,28 +11,29 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Shriyansh Lohia Blog — Essays on Full-Stack Development",
+  title:
+    "Shriyansh Lohia Essays — Essays on Startups, Ideas, Life and Programming",
   description: BLOG_DESCRIPTION,
   keywords: [
     ...SITE_KEYWORDS,
     "Shriyansh Lohia essays",
     "Shriyansh Kr. Lohia writing",
     "developer blog India",
-    "React essays",
-    "Next.js articles",
+    "life essays",
+    "programming essays",
   ],
   alternates: {
-    canonical: "/blog",
+    canonical: "/essays",
   },
   openGraph: {
-    title: "Shriyansh Lohia Blog — Essays by Shriyansh Kr. Lohia",
+    title: "Shriyansh Lohia Essays — Essays by Shriyansh Kr. Lohia",
     description: BLOG_DESCRIPTION,
-    url: "/blog",
+    url: "/essays",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shriyansh Lohia Blog",
+    title: "Shriyansh Lohia Essays",
     description: BLOG_DESCRIPTION,
     creator: "@whoshriyansh",
   },
@@ -47,10 +48,10 @@ function formatDate(date: Date) {
 }
 
 export default async function BlogIndexPage() {
-  let posts: Awaited<ReturnType<typeof getAllPublishedBlogs>> = [];
+  let posts: Awaited<ReturnType<typeof getAllPublishedEssays>> = [];
 
   try {
-    posts = await getAllPublishedBlogs();
+    posts = await getAllPublishedEssays();
   } catch {
     posts = [];
   }
@@ -73,15 +74,15 @@ export default async function BlogIndexPage() {
             ← Back to portfolio
           </Link>
           <p className="text-xs text-soft_gray/60 uppercase tracking-[0.3em] mb-4">
-            Shriyansh Lohia Blog
+            Shriyansh Lohia Essays
           </p>
           <h1 className="font-display font-bold text-4xl md:text-5xl text-white heading-tight">
             Essays by {AUTHOR.givenName}
           </h1>
           <p className="text-soft_gray/60 text-sm md:text-base mt-4 leading-relaxed max-w-xl">
-            Long-form essays by {AUTHOR.name} on full-stack development, building
-            Plavist, React, Next.js, and lessons from shipping production
-            software.
+            Long-form essays by {AUTHOR.name} on full-stack development,
+            building Plavist, React, Next.js, and lessons from shipping
+            production software.
           </p>
         </header>
 
@@ -94,7 +95,7 @@ export default async function BlogIndexPage() {
                 key={post.id}
                 className="group border-b border-white/5 py-8 hover:bg-white/[0.02] transition-colors px-2 -mx-2 rounded-lg"
               >
-                <Link href={`/blog/${post.slug}`} className="block">
+                <Link href={`/essays/${post.slug}`} className="block">
                   <time
                     dateTime={new Date(post.publishedAt).toISOString()}
                     className="text-xs text-dark_gray uppercase tracking-wider"

@@ -7,6 +7,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const email = String(body.email || "");
     const name = String(body.name || "");
+    const interest = String(body.interest || "both");
 
     if (!name.trim()) {
       return NextResponse.json({ error: "Name is required" }, { status: 400 });
@@ -16,7 +17,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
-    const result = await subscribeToNewsletter(email, name);
+    if (!interest.trim()) {
+      return NextResponse.json(
+        { error: "Interest is required" },
+        { status: 400 },
+      );
+    }
+
+    const result = await subscribeToNewsletter(email, name, interest);
 
     const messages: Record<typeof result.status, string> = {
       subscribed: "You're subscribed. Check your inbox for a confirmation.",
@@ -31,7 +39,8 @@ export async function POST(request: Request) {
       emailConfigured: isBrevoConfigured(),
     });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Subscription failed";
+    const message =
+      error instanceof Error ? error.message : "Subscription failed";
 
     if (message === "Invalid email address") {
       return NextResponse.json({ error: message }, { status: 400 });
@@ -42,6 +51,9 @@ export async function POST(request: Request) {
     }
 
     console.error("Newsletter subscribe failed:", error);
-    return NextResponse.json({ error: "Failed to subscribe. Please try again." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to subscribe. Please try again." },
+      { status: 500 },
+    );
   }
 }

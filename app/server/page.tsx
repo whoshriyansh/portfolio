@@ -10,6 +10,7 @@ type BlogItem = {
   excerpt: string;
   readingTime: number;
   publishedAt: string;
+  type: "blog" | "essay";
 };
 
 export default function ServerDashboard() {
@@ -205,7 +206,7 @@ export default function ServerDashboard() {
                   {blog.title}
                 </h2>
                 <p className="text-xs text-dark_gray mt-1">
-                  /blog/{blog.slug} · {formatDate(blog.publishedAt)} ·{" "}
+                  /blogs/{blog.slug} · {formatDate(blog.publishedAt)} ·{" "}
                   {blog.readingTime} min read
                 </p>
                 <p className="text-soft_gray/50 text-sm mt-2 line-clamp-1">
@@ -214,7 +215,7 @@ export default function ServerDashboard() {
               </div>
               <div className="flex items-center gap-2 shrink-0">
                 <a
-                  href={`/blog/${blog.slug}`}
+                  href={`${blog.type === "blog" ? "/blogs" : "/essays"}/${blog.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2 rounded-lg border border-white/10 text-sm text-soft_gray hover:text-white transition-colors"

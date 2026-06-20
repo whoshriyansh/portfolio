@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GitHub, Linkedin, Mail, Heart } from "react-feather";
+import { GitHub, Linkedin, Mail, Heart, Instagram } from "react-feather";
 
 const PremiumFooter = () => {
   return (
@@ -35,6 +35,7 @@ const PremiumFooter = () => {
           >
             {[
               { icon: <GitHub size={16} />, href: "https://github.com/whoshriyansh", label: "GitHub" },
+              { icon: <Instagram size={16} />, href: "https://www.instagram.com/whoshriyansh/", label: "Instagram" },
               { icon: <Linkedin size={16} />, href: "https://www.linkedin.com/in/whoshriyansh/", label: "LinkedIn" },
               { icon: <Mail size={16} />, href: "mailto:whoshriyansh@gmail.com", label: "Email" },
             ].map((social) => (

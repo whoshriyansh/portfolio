@@ -6,6 +6,16 @@ import { ArrowUpRight, X, GitHub, ExternalLink, FileText } from "react-feather";
 import SectionHeader from "./shared/SectionHeader";
 
 const projects = [
+    {
+    id: 4,
+    name: "Plavist",
+    tagline: "Real-time Time Tracking Planner",
+    description:
+      "I built this project because I faced the same problem: applying to jobs and not hearing back. When I finally got a job and was asked to conduct interviews, I couldn't tell candidates how their interviews went because I had no time, and they wasted their time coming in since HR had already selected someone else.",
+    imageUrl: "/assets/plavist.png",
+    techStack: ["Next.js", "TypeScript", "Node.js", "Mongo DB"],
+    liveUrl: "http://plavist.com",
+  },
   {
     id: 1,
     name: "Code Sail",
@@ -31,27 +41,17 @@ const projects = [
     githubUrl:
       "https://github.com/whoshriyansh/HourStack/blob/main/.github/workflows/cicd.yml",
   },
-  {
-    id: 4,
-    name: "HourStack",
-    tagline: "Real-time Time Tracking Planner",
-    description:
-      "A full-stack real-time Time Tracking application built with Next.js featuring project, task, and client management. Includes secure auth, CRUD operations, global state management with Zustand, and Shadcn UI — all in TypeScript.",
-    imageUrl: "/assets/hourstack.png",
-    techStack: ["Next.js", "TypeScript", "Zustand", "Shadcn UI"],
-    liveUrl: "http://hourstack.publicvm.com/",
-    githubUrl: "https://github.com/whoshriyansh/hourstack",
-  },
-  {
-    id: 2,
-    name: "Genbloc",
-    tagline: "Task Management Application",
-    description:
-      "A complete task management application that lets you organize, track, and finish your tasks efficiently. Built with a focus on clean UI and smooth user experience with real-time updates.",
-    imageUrl: "/assets/genbloc.png",
-    techStack: ["React", "Node.js", "MongoDB", "Express"],
-    githubUrl: "https://github.com/whoshriyansh/genbloc",
-  },
+
+  // {
+  //   id: 2,
+  //   name: "Genbloc",
+  //   tagline: "Task Management Application",
+  //   description:
+  //     "A complete task management application that lets you organize, track, and finish your tasks efficiently. Built with a focus on clean UI and smooth user experience with real-time updates.",
+  //   imageUrl: "/assets/genbloc.png",
+  //   techStack: ["React", "Node.js", "MongoDB", "Express"],
+  //   githubUrl: "https://github.com/whoshriyansh/genbloc",
+  // },
   {
     id: 5,
     name: "Stockin",

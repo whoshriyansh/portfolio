@@ -2,13 +2,13 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, MapPin, Linkedin, GitHub } from "react-feather";
+import { Mail, MapPin, Linkedin, GitHub, Instagram } from "react-feather";
 import SectionHeader from "./shared/SectionHeader";
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", interest: "" });
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
 
@@ -34,7 +34,7 @@ const ContactSection = () => {
 
       setStatus("success");
       setMessage(data.message);
-      setFormData({ name: "", email: "" });
+      setFormData({ name: "", email: "", interest: "" });
     } catch {
       setStatus("error");
       setMessage("Network error. Please try again.");
@@ -44,7 +44,7 @@ const ContactSection = () => {
   const contactLinks = [
     {
       icon: <Mail size={16} />,
-      label: "whoshriyansh@gmail.com",
+      label: "Email Me",
       href: "mailto:whoshriyansh@gmail.com",
     },
     {
@@ -58,9 +58,9 @@ const ContactSection = () => {
       href: "https://github.com/whoshriyansh",
     },
     {
-      icon: <MapPin size={16} />,
-      label: "India",
-      href: null,
+      icon: <Instagram size={16} />,
+      label: "Instagram",
+      href: "https://www.instagram.com/whoshriyansh/",
     },
   ];
 
@@ -70,7 +70,7 @@ const ContactSection = () => {
         <SectionHeader
           label="Newsletter"
           title="Stay in the loop"
-          description="Subscribe for new essays on full-stack development, Plavist, and building software."
+          description="Subscribe for new essays and blogs on startups, programming, and life."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
@@ -86,13 +86,11 @@ const ContactSection = () => {
                 <span className="text-gradient-orange"> newsletter</span>
               </h3>
               <p className="text-soft_gray/50 text-sm leading-relaxed">
-                Get notified when I publish a new essay. No spam — just
-                thoughtful writing on React, Next.js, startups, and lessons from
-                shipping real products. Unsubscribe anytime.
+                Get notified when I publish a new essay. It can feel like spam sometimes, but I will share my experience and knowledge on everything I learn about from life and books.
               </p>
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-2 flex-col gap-4">
               {contactLinks.map((link, i) => (
                 <motion.div
                   key={link.label}
@@ -101,10 +99,10 @@ const ContactSection = () => {
                   transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
                   className="group flex items-center gap-3"
                 >
-                  <div className="p-2 rounded-lg bg-surface border border-white/5 text-orange group-hover:border-orange/30 transition-colors duration-300">
+                  <div className="p-2 rounded-lg bg-surface border border-white/5 text-orange group-hover:border-orange/30 transition-colors duration-300 w-full flex flex-center justify-center gap-2">
                     {link.icon}
-                  </div>
-                  {link.href ? (
+
+                     {link.href ? (
                     <a
                       href={link.href}
                       target="_blank"
@@ -117,6 +115,8 @@ const ContactSection = () => {
                   ) : (
                     <span className="text-sm text-soft_gray/70">{link.label}</span>
                   )}
+                  </div>
+                 
                 </motion.div>
               ))}
             </div>
@@ -156,6 +156,27 @@ const ContactSection = () => {
                 className="w-full bg-surface border border-white/10 rounded-xl px-5 py-4 text-sm text-white placeholder:text-soft_gray/30 focus:outline-none focus:border-orange/40 transition-colors duration-300 disabled:opacity-50"
               />
             </div>
+
+             <div className="relative">
+              <select
+                value={formData.interest || ""}
+                onChange={(e) =>
+                  setFormData({ ...formData, interest: e.target.value })
+                }
+                required
+                disabled={status === "loading"}
+                className="w-full bg-surface border border-white/10 rounded-xl px-5 py-4 text-sm text-white placeholder:text-soft_gray/30 focus:outline-none focus:border-orange/40 transition-colors duration-300 disabled:opacity-50"
+              >
+                <option value="" disabled>
+                  I'm interested in...
+                </option>
+                <option value="blogs">Blogs</option>
+                <option value="essays">Essays</option>
+                <option value="both">Both</option>
+              </select>
+            </div>
+
+           
 
             <motion.button
               type="submit"

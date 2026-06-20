@@ -31,7 +31,8 @@ export type SubscribeResult =
 
 export async function subscribeToNewsletter(
   email: string,
-  name = ""
+  name = "",
+  interest: string,
 ): Promise<SubscribeResult> {
   const normalizedEmail = normalizeEmail(email);
   const trimmedName = name.trim();
@@ -52,17 +53,20 @@ export async function subscribeToNewsletter(
     return { status: "already_subscribed" };
   }
 
-  const unsubscribeToken = existing?.unsubscribeToken || createUnsubscribeToken();
+  const unsubscribeToken =
+    existing?.unsubscribeToken || createUnsubscribeToken();
 
   if (existing) {
     existing.active = true;
     existing.name = trimmedName;
+    existing.interest = interest as "blogs" | "essays" | "both";
     existing.subscribedAt = new Date();
     await existing.save();
   } else {
     await Subscriber.create({
       name: trimmedName,
       email: normalizedEmail,
+      interest: interest as "blogs" | "essays" | "both",
       unsubscribeToken,
       active: true,
     });
@@ -73,7 +77,11 @@ export async function subscribeToNewsletter(
       await sendBrevoEmail({
         to: normalizedEmail,
         subject: "You're subscribed — Shriyansh Lohia",
-        htmlContent: buildWelcomeEmail(getUnsubscribeUrl(unsubscribeToken), trimmedName),
+        htmlContent: buildWelcomeEmail(
+          getUnsubscribeUrl(unsubscribeToken),
+          trimmedName,
+          interest,
+        ),
       });
     } catch (error) {
       console.error("Welcome email failed:", error);
@@ -89,7 +97,7 @@ export type UnsubscribeResult =
   | { status: "not_found" };
 
 export async function unsubscribeFromNewsletter(
-  token: string
+  token: string,
 ): Promise<UnsubscribeResult> {
   await connectDB();
 
@@ -121,7 +129,24 @@ export async function notifySubscribersOfNewBlog(blog: BlogPost): Promise<{
 
   await connectDB();
 
-  const subscribers = await Subscriber.find({ active: true }).lean();
+  const targetedInterests =
+    blog.type === "essay"
+      ? ["essays", "both"]
+      : blog.type === "blog"
+        ? ["blogs", "both"]
+        : ["both"]; // Fallback or catch-all if blog.type is something else
+
+  // 2. Fetch all matching subscribers in a single query
+  const subscribers = await Subscriber.find({
+    active: true,
+    interest: { $in: targetedInterests },
+  }).lean();
+
+  console.log(
+    `Notifying ${subscribers.length} subscribers about new ${blog.type}: ${blog.title}`,
+  );
+
+  console.log("Subscribers:", subscribers);
 
   if (subscribers.length === 0) {
     return { sent: 0, failed: 0, skipped: false };
@@ -134,11 +159,13 @@ export async function notifySubscribersOfNewBlog(blog: BlogPost): Promise<{
     try {
       await sendBrevoEmail({
         to: subscriber.email,
-        subject: `New essay: ${blog.title}`,
+        subject: `New ${blog.type}: ${blog.title}`,
         htmlContent: buildNewBlogEmail({
           title: blog.title,
           excerpt: blog.excerpt,
           slug: blog.slug,
+          type: blog.type,
+          interest: subscriber.interest,
           readingTime: blog.readingTime,
           coverImageUrl: blog.coverImageUrl || undefined,
           unsubscribeUrl: getUnsubscribeUrl(subscriber.unsubscribeToken),
