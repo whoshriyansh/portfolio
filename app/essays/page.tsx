@@ -80,9 +80,11 @@ export default async function BlogIndexPage() {
             Essays by {AUTHOR.givenName}
           </h1>
           <p className="text-soft_gray/60 text-sm md:text-base mt-4 leading-relaxed max-w-xl">
-            Long-form essays by {AUTHOR.name} on full-stack development,
-            building Plavist, React, Next.js, and lessons from shipping
-            production software.
+            Long-form essays by {AUTHOR.name} on Programming, Startups, Ideas,
+            Life and anything I feel like writing about and sharing my thoughts
+            and experiences on. I write about my learnings, mistakes, and
+            lessons from building products, shipping software, and navigating
+            life as a developer and founder.
           </p>
         </header>
 

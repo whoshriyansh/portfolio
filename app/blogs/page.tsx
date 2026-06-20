@@ -79,14 +79,13 @@ export default async function BlogIndexPage() {
             Blogs by {AUTHOR.givenName}
           </h1>
           <p className="text-soft_gray/60 text-sm md:text-base mt-4 leading-relaxed max-w-xl">
-            Long-form essays by {AUTHOR.name} on full-stack development,
-            building Plavist, React, Next.js, and lessons from shipping
-            production software.
+            Short daily blogs by {AUTHOR.name} on prgramming, startups, idead,
+            life and anything I feel like writing about.
           </p>
         </header>
 
         {posts.length === 0 ? (
-          <p className="text-soft_gray/50 text-sm">No essays published yet.</p>
+          <p className="text-soft_gray/50 text-sm">No blogs published yet.</p>
         ) : (
           <div className="flex flex-col gap-2">
             {posts.map((post) => (
